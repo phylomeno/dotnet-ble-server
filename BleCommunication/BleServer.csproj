@@ -6,4 +6,8 @@
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Tmds.DBus" Version="0.8.0" />
+  </ItemGroup>
+
 </Project>
