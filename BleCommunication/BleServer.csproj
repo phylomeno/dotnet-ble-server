@@ -10,4 +10,8 @@
     <PackageReference Include="Tmds.DBus" Version="0.8.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infrastructure\BlueZ\" />
+  </ItemGroup>
+
 </Project>
