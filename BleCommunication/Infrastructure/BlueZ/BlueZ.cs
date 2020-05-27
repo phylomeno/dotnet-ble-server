@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Tmds.DBus;
 
 [assembly: InternalsVisibleTo(Tmds.DBus.Connection.DynamicAssemblyName)]
-namespace bluez.DBus
+namespace BleServer.Infrastructure.BlueZ
 {
     [DBusInterface("org.freedesktop.DBus.ObjectManager")]
     interface IObjectManager : IDBusObject
