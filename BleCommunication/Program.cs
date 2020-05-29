@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using BleServer.Infrastructure.BlueZ;
 using Tmds.DBus;
 
@@ -30,6 +31,11 @@ namespace BleCommunication
             var advertisingManager = GetAdvertisingManager();
 
             advertisingManager.RegisterAdvertisementAsync(advertisement.ObjectPath, new Dictionary<string, object>());
+
+            while (true)
+            {
+                Thread.Sleep(5000);
+            }
         }
 
         private static IDBusObject CreateAdvertisement()
@@ -39,13 +45,14 @@ namespace BleCommunication
                 ObjectPath = new ObjectPath("/org/bluez/example/advertisement"),
                 Type = "peripheral",
                 ServiceUUIDs = new[] {"180D", "180F"},
-                ManufacturerData = {{"0xffff", new[] {"0x00", "0x01", "0x02", "0x03"}}},
-                ServiceData = {{"9999", new[] {"0x00", "0x01", "0x02", "0x03"}}},
+                ManufacturerData = new Dictionary<string, object> {{"0xffff", new[] {"0x00", "0x01", "0x02", "0x03"}}},
+                ServiceData = new Dictionary<string, object> {{"9999", new[] {"0x00", "0x01", "0x02", "0x03"}}},
                 IncludeTxPower = true,
                 LocalName = "TestAdvertisement"
             };
 
-            Connection.System.RegisterObjectAsync(advertisement);
+            //Connection.System.RegisterObjectAsync(advertisement);
+
 
             return advertisement;
         }
