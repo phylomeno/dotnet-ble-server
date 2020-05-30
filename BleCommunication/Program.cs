@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BleCommunication;
+using BleServer.Infrastructure.BlueZ.Advertisements;
 using Tmds.DBus;
 
 namespace BleServer
