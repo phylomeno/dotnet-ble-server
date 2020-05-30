@@ -1,24 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ;
 using Tmds.DBus;
 
 namespace BleCommunication
 {
-    public class ExampleAdvertisement : IDBusObject
+    [DBusInterface("org.bluez.LEAdvertisement1")]
+    interface ILEAdvertisement1 : IDBusObject
     {
-        public string Type { get; set; }
-        public string[] ServiceUUIDs { get; set; }
-        public IDictionary<string, object> ManufacturerData { get; set; }
-        public string[] SolicitUUIDs { get; set; }
+        Task ReleaseAsync();
+        Task<object> GetAsync(string prop);
+        Task<IDictionary<string, object>> GetAllAsync();
+        Task SetAsync(string prop, object val);
+        Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler);
+    }
 
-        public IDictionary<string, object> ServiceData { get; set; }
+    public class Advertisement : ILEAdvertisement1
+    {
+        public static readonly ObjectPath Path = new ObjectPath("/org/bluez/example/advertisement");
+        private IDictionary<string, object> _properties;
+        public Advertisement(IDictionary<string, object> properties)
+        {
+            _properties = properties;
+        }
+        public ObjectPath ObjectPath
+        {
+            get
+            {
+                return Path;
+            }
+        }
 
-        public bool IncludeTxPower { get; set; }
+        public event Action<PropertyChanges> OnPropertiesChanged;
 
-        public string LocalName { get; set; }
-        public ObjectPath ObjectPath { get; set; }
+        public Task<IDictionary<string, object>> GetAllAsync()
+        {
+            return Task.FromResult(_properties);
+        }
+
+        public Task<object> GetAsync(string prop)
+        {
+            return Task.FromResult(_properties[prop]);
+        }
+
+        public Task SetAsync(string prop, object val)
+        {
+            _properties[prop] = val;
+            OnPropertiesChanged?.Invoke(PropertyChanges.ForProperty(prop, val));
+            return Task.CompletedTask;
+        }
+
+        public Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler)
+        {
+            return SignalWatcher.AddAsync(this, nameof(OnPropertiesChanged), handler);
+        }
+        public Task ReleaseAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     internal class Program
@@ -40,21 +81,25 @@ namespace BleCommunication
 
         private static IDBusObject CreateAdvertisement()
         {
-            var advertisement = new ExampleAdvertisement
+            var advertisement = new Advertisement(new Dictionary<string, object>()
             {
-                ObjectPath = new ObjectPath("/org/bluez/example/advertisement"),
-                Type = "peripheral",
-                ServiceUUIDs = new[] {"180D", "180F"},
-                ManufacturerData = new Dictionary<string, object> {{"0xffff", new[] {"0x00", "0x01", "0x02", "0x03"}}},
-                ServiceData = new Dictionary<string, object> {{"9999", new[] {"0x00", "0x01", "0x02", "0x03"}}},
-                IncludeTxPower = true,
-                LocalName = "TestAdvertisement"
-            };
+                {"Type", "peripheral"},
+                {"ServiceUUIDs", new[] {"180D", "180F"}},
+                {
+                    "ManufacturerData",
+                    new Dictionary<string, object> {{"0xffff", new[] {"0x00", "0x01", "0x02", "0x03"}}}
+                },
+                {"ServiceData", new Dictionary<string, object> {{"9999", new[] {"0x00", "0x01", "0x02", "0x03"}}}},
+                {"IncludeTxPower", true},
+                {"LocalName", "TestAdvertisement"}
+            });
 
-            //Connection.System.RegisterObjectAsync(advertisement);
+            var advertisementProxy = Connection.System.CreateProxy<ILEAdvertisement1>("org.bluez", advertisement.ObjectPath);
+            Connection.System.RegisterObjectAsync(advertisement);
 
+            advertisementProxy.SetAsync("LocalName", "My Adv");
 
-            return advertisement;
+            return advertisementProxy;
         }
 
         private static ILEAdvertisingManager1 GetAdvertisingManager()
