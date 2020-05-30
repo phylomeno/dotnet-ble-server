@@ -68,10 +68,15 @@ namespace BleCommunication
         {
             Console.WriteLine("Hello Bluetooth");
 
-            var advertisement = CreateAdvertisement();
-            var advertisingManager = GetAdvertisingManager();
+            Task.Run(async () =>
+            {
 
-            advertisingManager.RegisterAdvertisementAsync(advertisement.ObjectPath, new Dictionary<string, object>());
+                var advertisement = await CreateAdvertisement();
+                var advertisingManager = GetAdvertisingManager();
+
+                await advertisingManager.RegisterAdvertisementAsync(advertisement.ObjectPath, new Dictionary<string, object>());
+            });
+
 
             while (true)
             {
@@ -79,7 +84,7 @@ namespace BleCommunication
             }
         }
 
-        private static IDBusObject CreateAdvertisement()
+        private static async Task<IDBusObject> CreateAdvertisement()
         {
             var advertisement = new Advertisement(new Dictionary<string, object>()
             {
@@ -95,9 +100,9 @@ namespace BleCommunication
             });
 
             var advertisementProxy = Connection.System.CreateProxy<ILEAdvertisement1>("org.bluez", advertisement.ObjectPath);
-            Connection.System.RegisterObjectAsync(advertisement);
+            await Connection.System.RegisterObjectAsync(advertisement);
 
-            advertisementProxy.SetAsync("LocalName", "My Adv");
+            await advertisementProxy.SetAsync("LocalName", "My Adv");
 
             return advertisementProxy;
         }
