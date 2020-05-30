@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ;
@@ -70,21 +72,28 @@ namespace BleCommunication
 
             Task.Run(async () =>
             {
+                using (var connection = new Connection(Address.System))
+                {
+                    await connection.ConnectAsync();
+                    var advertisement = await CreateAdvertisement(connection);
+                    Console.WriteLine("Advertisement created");
+                    var advertisingManager = GetAdvertisingManager(connection);
 
-                var advertisement = await CreateAdvertisement();
-                var advertisingManager = GetAdvertisingManager();
+                    await advertisingManager.RegisterAdvertisementAsync(advertisement.ObjectPath, new Dictionary<string, object>());
+                    Console.WriteLine("Advertisement registered");
 
-                await advertisingManager.RegisterAdvertisementAsync(advertisement.ObjectPath, new Dictionary<string, object>());
-            });
+                }
+            }).Wait();
 
 
+            Console.WriteLine("Waiting");
             while (true)
             {
                 Thread.Sleep(5000);
             }
         }
 
-        private static async Task<IDBusObject> CreateAdvertisement()
+        private static async Task<IDBusObject> CreateAdvertisement(Connection connection)
         {
             var advertisement = new Advertisement(new Dictionary<string, object>()
             {
@@ -99,17 +108,17 @@ namespace BleCommunication
                 {"LocalName", "TestAdvertisement"}
             });
 
-            var advertisementProxy = Connection.System.CreateProxy<ILEAdvertisement1>("org.bluez", advertisement.ObjectPath);
-            await Connection.System.RegisterObjectAsync(advertisement);
+            var advertisementProxy = connection.CreateProxy<ILEAdvertisement1>("org.bluez", advertisement.ObjectPath);
+            await connection.RegisterObjectAsync(advertisement);
 
-            await advertisementProxy.SetAsync("LocalName", "My Adv");
+            //await advertisementProxy.SetAsync("LocalName", "My Adv");
 
             return advertisementProxy;
         }
 
-        private static ILEAdvertisingManager1 GetAdvertisingManager()
+        private static ILEAdvertisingManager1 GetAdvertisingManager(Connection connection)
         {
-            return Connection.System.CreateProxy<ILEAdvertisingManager1>("org.bluez", "/org/bluez/hci0");
+            return connection.CreateProxy<ILEAdvertisingManager1>("org.bluez", "/org/bluez/hci0");
         }
     }
 }
