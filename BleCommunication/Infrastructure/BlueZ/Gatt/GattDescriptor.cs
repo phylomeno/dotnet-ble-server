@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using BleServer.Infrastructure.BlueZ.Utilities;
 using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
@@ -22,8 +23,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public Task<T> GetAsync<T>(string prop)
         {
-            var propertyValue = _Properties.GetType().GetProperty(prop)?.GetValue(_Properties);
-            return Task.FromResult((T) propertyValue);
+            return _Properties.ReadProperty<T>(prop);
         }
 
         public Task<GattDescriptor1Properties> GetAllAsync()
@@ -33,8 +33,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public Task SetAsync(string prop, object val)
         {
-            _Properties.GetType().GetProperty(prop)?.SetValue(_Properties, val);
-            return Task.CompletedTask;
+            return _Properties.SetProperty(prop, val);
         }
 
         public Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler)
