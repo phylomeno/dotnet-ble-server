@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
+using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
     internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1
     {
-        public GattCharacteristic(GattCharacteristic1Properties properties) : base(properties)
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(objectPath, properties)
         {
         }
 
