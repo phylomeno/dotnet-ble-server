@@ -19,6 +19,8 @@ namespace BleServer
                     await ConnectToDBus(connection);
                     var advertisement = await CreateAdvertisementObject(connection);
                     await RegisterAdvertisement(connection, advertisement);
+
+
                 }
             }).Wait();
 
@@ -34,7 +36,6 @@ namespace BleServer
                 new Dictionary<string, object>());
             Console.WriteLine("Advertisement registered");
         }
-
         private static async Task<IDBusObject> CreateAdvertisementObject(Connection connection)
         {
             var advertisement = await Advertisement.CreateAdvertisement(connection);

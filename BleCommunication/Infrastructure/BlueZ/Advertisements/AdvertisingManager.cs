@@ -1,4 +1,5 @@
-﻿using Tmds.DBus;
+﻿using BleServer.Infrastructure.BlueZ;
+using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Advertisements
 {
