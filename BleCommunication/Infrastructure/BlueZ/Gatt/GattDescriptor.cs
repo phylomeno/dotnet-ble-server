@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
 using Tmds.DBus;
 
@@ -15,6 +16,21 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
         public Task<byte[]> ReadValueAsync()
         {
             return Task.FromResult(Properties.Value);
+        }
+
+        public Dictionary<string, Dictionary<string, object>> GetProperties()
+        {
+            return new Dictionary<string, Dictionary<string, object>>()
+            {
+                {
+                    "org.bluez.GattDescriptor1", new Dictionary<string, object>
+                    {
+                        { "Characteristic", Properties.Characteristic },
+                        { "UUID", Properties.UUID },
+                        { "Flags", Properties.Flags }
+                    }
+                }
+            };
         }
     }
 }
