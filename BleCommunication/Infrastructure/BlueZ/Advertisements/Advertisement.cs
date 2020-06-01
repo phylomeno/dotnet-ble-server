@@ -67,10 +67,6 @@ namespace BleServer.Infrastructure.BlueZ.Advertisements
 
             await connection.RegisterObjectAsync(advertisement);
 
-
-            var ad = connection.CreateProxy<ILEAdvertisement1>("org.bluez", "/org/bluez/example/advertisement0");
-            object t = "MY ASD";
-            await ad.SetAsync("LocalName", t);
             return advertisement;
         }
     }
