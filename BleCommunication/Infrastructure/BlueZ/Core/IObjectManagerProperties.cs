@@ -4,6 +4,6 @@ namespace BleServer.Infrastructure.BlueZ.Core
 {
     internal interface IObjectManagerProperties
     {
-        Dictionary<string, Dictionary<string, object>> GetProperties();
+        IDictionary<string, IDictionary<string, object>> GetProperties();
     }
 }

@@ -13,9 +13,9 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
         {
         }
 
-        public Dictionary<string, Dictionary<string, object>> GetProperties()
+        public IDictionary<string, IDictionary<string, object>> GetProperties()
         {
-            return new Dictionary<string, Dictionary<string, object>>
+            return new Dictionary<string, IDictionary<string, object>>
             {
                 {
                     "org.bluez.GattService1", new Dictionary<string, object>

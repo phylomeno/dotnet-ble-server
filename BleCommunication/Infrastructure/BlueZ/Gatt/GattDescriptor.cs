@@ -18,9 +18,9 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
             return Task.FromResult(Properties.Value);
         }
 
-        public Dictionary<string, Dictionary<string, object>> GetProperties()
+        public IDictionary<string, IDictionary<string, object>> GetProperties()
         {
-            return new Dictionary<string, Dictionary<string, object>>()
+            return new Dictionary<string, IDictionary<string, object>>()
             {
                 {
                     "org.bluez.GattDescriptor1", new Dictionary<string, object>
