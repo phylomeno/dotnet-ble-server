@@ -1,34 +1,61 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
 using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
-    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1
+    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
+        IObjectManagerProperties
     {
-        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(objectPath, properties)
+        private readonly IList<IGattDescriptor1> _Descriptors = new List<IGattDescriptor1>();
+
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(objectPath,
+            properties)
         {
         }
 
-        public Task<byte[]> ReadValueAsync(IDictionary<string, object> Options)
+        public Task<byte[]> ReadValueAsync(IDictionary<string, object> options)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Task WriteValueAsync(byte[] Value, IDictionary<string, object> Options)
+        public Task WriteValueAsync(byte[] value, IDictionary<string, object> options)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Task StartNotifyAsync()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Task StopNotifyAsync()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public Dictionary<string, Dictionary<string, object>> GetProperties()
+        {
+            return new Dictionary<string, Dictionary<string, object>>
+            {
+                {
+                    "org.bluez.GattCharacteristic1", new Dictionary<string, object>
+                    {
+                        {"Service", Properties.Service},
+                        {"UUID", Properties.UUID},
+                        {"Flags", Properties.Flags},
+                        {"Descriptors", _Descriptors.Select(d => d.ObjectPath).ToArray()}
+                    }
+                }
+            };
+        }
+
+        public void AddDescriptor(IGattDescriptor1 gattDescriptor)
+        {
+            _Descriptors.Add(gattDescriptor);
         }
     }
 }
