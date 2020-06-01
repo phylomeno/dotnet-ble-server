@@ -7,10 +7,10 @@ using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
-    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
+    public class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
         IObjectManagerProperties
     {
-        private readonly IList<IGattDescriptor1> _Descriptors = new List<IGattDescriptor1>();
+        public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
 
         public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(objectPath,
             properties)
@@ -47,15 +47,15 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
                         {"Service", Properties.Service},
                         {"UUID", Properties.UUID},
                         {"Flags", Properties.Flags},
-                        {"Descriptors", _Descriptors.Select(d => d.ObjectPath).ToArray()}
+                        {"Descriptors", Descriptors.Select(d => d.ObjectPath).ToArray()}
                     }
                 }
             };
         }
 
-        public void AddDescriptor(IGattDescriptor1 gattDescriptor)
+        public void AddDescriptor(GattDescriptor gattDescriptor)
         {
-            _Descriptors.Add(gattDescriptor);
+            Descriptors.Add(gattDescriptor);
         }
     }
 }

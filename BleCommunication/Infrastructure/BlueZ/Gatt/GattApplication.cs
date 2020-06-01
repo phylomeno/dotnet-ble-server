@@ -7,10 +7,37 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 {
     public class GattApplication : IObjectManager
     {
+        private readonly IList<GattService> _GattServices = new List<GattService>();
+
+        public GattApplication(ObjectPath objectPath)
+        {
+            ObjectPath = objectPath;
+        }
+
         public ObjectPath ObjectPath { get; }
+
+        public void AddService(GattService gattService)
+        {
+            _GattServices.Add(gattService);
+        }
+
         public Task<IDictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>>> GetManagedObjectsAsync()
         {
-            throw new NotImplementedException();
+            IDictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>> result = new Dictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>>();
+            foreach (var service in _GattServices)
+            {
+                result[service.ObjectPath] = service.GetProperties();
+                foreach (var characteristic in service.Characteristics)
+                {
+                    result[service.ObjectPath] = characteristic.GetProperties();
+                    foreach (var descriptor in characteristic.Descriptors)
+                    {
+                        result[descriptor.ObjectPath] = descriptor.GetProperties();
+                    }
+                }
+            }
+
+            return Task.FromResult(result);
         }
 
         public Task<IDisposable> WatchInterfacesAddedAsync(Action<(ObjectPath @object, IDictionary<string, IDictionary<string, object>> interfaces)> handler, Action<Exception> onError = null)
