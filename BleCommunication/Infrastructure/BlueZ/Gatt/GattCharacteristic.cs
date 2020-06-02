@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
 using Tmds.DBus;
@@ -19,12 +20,14 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public Task<byte[]> ReadValueAsync(IDictionary<string, object> options)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Reading value");
+            return Task.FromResult(Encoding.ASCII.GetBytes("Hello BLE"));
         }
 
         public Task WriteValueAsync(byte[] value, IDictionary<string, object> options)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Writing value");
+            return Task.Run(() => Console.WriteLine(Encoding.ASCII.GetChars(value)));
         }
 
         public Task StartNotifyAsync()
