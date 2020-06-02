@@ -4,11 +4,17 @@ namespace BleServer.Infrastructure.BlueZ.Utilities
 {
     public static class PropertyAccessExtensions
     {
-        public static Task<T> ReadProperty<T>(this object o, string prop)
+        public static T ReadProperty<T>(this object o, string prop)
         {
             var propertyValue = o.GetType().GetProperty(prop)?.GetValue(o);
-            return Task.FromResult((T) propertyValue);
+            return (T) propertyValue;
         }
+
+        public static object ReadProperty(this object o, string prop)
+        {
+            return o.GetType().GetProperty(prop)?.GetValue(o);
+        }
+
 
         public static Task SetProperty(this object o, string prop, object val)
         {

@@ -39,15 +39,5 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
             return Task.FromResult(result);
         }
-
-        public Task<IDisposable> WatchInterfacesAddedAsync(Action<(ObjectPath @object, IDictionary<string, IDictionary<string, object>> interfaces)> handler, Action<Exception> onError = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IDisposable> WatchInterfacesRemovedAsync(Action<(ObjectPath @object, string[] interfaces)> handler, Action<Exception> onError = null)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

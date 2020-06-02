@@ -17,9 +17,13 @@ namespace BleServer.Infrastructure.BlueZ.Core
 
         public ObjectPath ObjectPath { get; private set; }
 
+        public Task<object> GetAsync(string prop)
+        {
+            return Task.FromResult(Properties.ReadProperty(prop));
+        }
         public Task<T> GetAsync<T>(string prop)
         {
-            return Properties.ReadProperty<T>(prop);
+            return Task.FromResult(Properties.ReadProperty<T>(prop));
         }
 
         public Task<TV> GetAllAsync()

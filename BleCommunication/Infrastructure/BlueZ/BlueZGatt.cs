@@ -10,7 +10,7 @@ namespace BleServer.Infrastructure.BlueZ
     [DBusInterface("org.bluez.GattService1")]
     public interface IGattService1 : IDBusObject
     {
-        Task<T> GetAsync<T>(string prop);
+        Task<object> GetAsync(string prop);
         Task<GattService1Properties> GetAllAsync();
         Task SetAsync(string prop, object val);
         Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler);
@@ -62,13 +62,6 @@ namespace BleServer.Infrastructure.BlueZ
         }
     }
 
-    static class GattService1Extensions
-    {
-        public static Task<string> GetUUIDAsync(this IGattService1 o) => o.GetAsync<string>("UUID");
-        public static Task<bool> GetPrimaryAsync(this IGattService1 o) => o.GetAsync<bool>("Primary");
-        public static Task<ObjectPath[]> GetCharacteristicsAsync(this IGattService1 o) => o.GetAsync<ObjectPath[]>("Characteristics");
-    }
-
     [DBusInterface("org.bluez.GattCharacteristic1")]
     interface IGattCharacteristic1 : IDBusObject
     {
@@ -76,7 +69,7 @@ namespace BleServer.Infrastructure.BlueZ
         Task WriteValueAsync(byte[] Value, IDictionary<string, object> Options);
         Task StartNotifyAsync();
         Task StopNotifyAsync();
-        Task<T> GetAsync<T>(string prop);
+        Task<Object> GetAsync(string prop);
         Task<GattCharacteristic1Properties> GetAllAsync();
         Task SetAsync(string prop, object val);
         Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler);
@@ -156,20 +149,11 @@ namespace BleServer.Infrastructure.BlueZ
         }
     }
 
-    static class GattCharacteristic1Extensions
-    {
-        public static Task<string> GetUUIDAsync(this IGattCharacteristic1 o) => o.GetAsync<string>("UUID");
-        public static Task<ObjectPath> GetServiceAsync(this IGattCharacteristic1 o) => o.GetAsync<ObjectPath>("Service");
-        public static Task<byte[]> GetValueAsync(this IGattCharacteristic1 o) => o.GetAsync<byte[]>("Value");
-        public static Task<bool> GetNotifyingAsync(this IGattCharacteristic1 o) => o.GetAsync<bool>("Notifying");
-        public static Task<string[]> GetFlagsAsync(this IGattCharacteristic1 o) => o.GetAsync<string[]>("Flags");
-    }
-
     [DBusInterface("org.bluez.GattDescriptor1")]
     interface IGattDescriptor1 : IDBusObject
     {
         Task<byte[]> ReadValueAsync();
-        Task<T> GetAsync<T>(string prop);
+        Task<object> GetAsync(string prop);
         Task<GattDescriptor1Properties> GetAllAsync();
         Task SetAsync(string prop, object val);
         Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler);
@@ -233,14 +217,6 @@ namespace BleServer.Infrastructure.BlueZ
                 _Flags = (value);
             }
         }
-    }
-
-    static class GattDescriptor1Extensions
-    {
-        public static Task<string> GetUUIDAsync(this IGattDescriptor1 o) => o.GetAsync<string>("UUID");
-        public static Task<ObjectPath> GetCharacteristicAsync(this IGattDescriptor1 o) => o.GetAsync<ObjectPath>("Characteristic");
-        public static Task<byte[]> GetValueAsync(this IGattDescriptor1 o) => o.GetAsync<byte[]>("Value");
-        public static Task<string[]> GetFlagsAsync(this IGattDescriptor1 o) => o.GetAsync<string[]>("Flags");
     }
 
     [DBusInterface("org.bluez.LEAdvertisement1")]
