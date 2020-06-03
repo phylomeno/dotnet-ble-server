@@ -21,8 +21,8 @@ namespace BleServer
                     await RegisterAdvertisement(connection, advertisement);
                     await SampleGattApplication.RegisterGattApplication(connection);
 
-                    Console.WriteLine("Press any key to quit");
-                    Console.ReadKey();
+                    Console.WriteLine("Press CTRL+C to quit");
+                    await Task.Delay(-1);
                 }
             }).Wait();
         }
