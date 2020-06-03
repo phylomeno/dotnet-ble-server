@@ -5,6 +5,7 @@ using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
+    [DBusInterface("org.freedesktop.DBus.ObjectManager")]
     public class GattApplication : IObjectManager
     {
         private readonly IList<GattService> _GattServices = new List<GattService>();
@@ -29,7 +30,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
                 result[service.ObjectPath] = service.GetProperties();
                 foreach (var characteristic in service.Characteristics)
                 {
-                    result[service.ObjectPath] = characteristic.GetProperties();
+                    result[characteristic.ObjectPath] = characteristic.GetProperties();
                     foreach (var descriptor in characteristic.Descriptors)
                     {
                         result[descriptor.ObjectPath] = descriptor.GetProperties();
