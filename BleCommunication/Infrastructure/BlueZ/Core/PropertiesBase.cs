@@ -8,14 +8,15 @@ namespace BleServer.Infrastructure.BlueZ.Core
     public abstract class PropertiesBase<TV>
     {
         protected readonly TV Properties;
+        private readonly ObjectPath _ObjectPath;
 
         protected PropertiesBase(ObjectPath objectPath, TV properties)
         {
-            ObjectPath = objectPath;
+            _ObjectPath = objectPath;
             Properties = properties;
         }
 
-        public ObjectPath ObjectPath { get; private set; }
+        public ObjectPath ObjectPath => _ObjectPath;
 
         public Task<object> GetAsync(string prop)
         {
