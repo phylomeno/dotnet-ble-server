@@ -20,11 +20,11 @@ namespace BleServer
                     var advertisement = await CreateAdvertisementObject(connection);
                     await RegisterAdvertisement(connection, advertisement);
                     await SampleGattApplication.RegisterGattApplication(connection);
+
+                    Console.WriteLine("Press any key to quit");
+                    Console.ReadKey();
                 }
             }).Wait();
-
-            Console.WriteLine("Press any key to quit");
-            Console.ReadKey();
         }
 
         private static async Task RegisterAdvertisement(Connection connection, IDBusObject advertisement)
