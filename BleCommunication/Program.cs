@@ -38,7 +38,7 @@ namespace BleServer
 
         private static async Task<IDBusObject> CreateAdvertisementObject(Connection connection)
         {
-            var advertisement = await Advertisement.CreateAdvertisement(connection);
+            var advertisement = await SampleAdvertisement.CreateAdvertisement(connection);
             Console.WriteLine("Advertisement created");
             return advertisement;
         }
