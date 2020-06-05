@@ -10,7 +10,7 @@ namespace BleServer.Infrastructure.BlueZ.Advertisements
     {
         Task ReleaseAsync();
         Task<object> GetAsync(string prop);
-        Task<LEAdvertisement1Properties> GetAllAsync();
+        Task<AdvertisementProperties> GetAllAsync();
         Task SetAsync(string prop, object val);
         Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler);
     }

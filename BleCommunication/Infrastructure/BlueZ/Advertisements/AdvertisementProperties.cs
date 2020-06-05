@@ -7,7 +7,7 @@ namespace BleServer.Infrastructure.BlueZ.Advertisements
     [Dictionary]
     [SuppressMessage("ReSharper", "ConvertToAutoProperty")]
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    public class LEAdvertisement1Properties
+    public class AdvertisementProperties
     {
         private string _Type;
         public string Type

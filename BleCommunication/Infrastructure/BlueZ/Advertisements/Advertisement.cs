@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
-using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Advertisements
 {
-    public class Advertisement : PropertiesBase<LEAdvertisement1Properties>, ILEAdvertisement1
+    public class Advertisement : PropertiesBase<AdvertisementProperties>, ILEAdvertisement1
     {
-        public Advertisement(ObjectPath objectPath, LEAdvertisement1Properties properties) : base(objectPath,
+        public Advertisement(string objectPath, AdvertisementProperties properties) : base(objectPath,
             properties)
         {
         }
