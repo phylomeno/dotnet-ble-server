@@ -30,5 +30,12 @@ namespace BleServer.Infrastructure.BlueZ.Advertisements
         {
             return _Context.Connection.CreateProxy<ILEAdvertisingManager1>("org.bluez", "/org/bluez/hci0");
         }
+
+        public async Task CreateAdvertisement(string objectPath, AdvertisementProperties advertisementProperties)
+        {
+            var advertisement = new Advertisement(objectPath, advertisementProperties);
+
+            await new AdvertisingManager(_Context).RegisterAdvertisement(advertisement);
+        }
     }
 }

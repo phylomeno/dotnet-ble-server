@@ -1,4 +1,6 @@
-﻿using Tmds.DBus;
+﻿using System.Threading.Tasks;
+using BleServer.Infrastructure.BlueZ.Advertisements;
+using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Core
 {
@@ -11,5 +13,12 @@ namespace BleServer.Infrastructure.BlueZ.Core
         }
 
         public Connection Connection { get; }
+
+        public async Task CreateAdvertisement(AdvertisementProperties advertisementProperties, string objectPath)
+        {
+            var advertisement = new Advertisement(objectPath, advertisementProperties);
+
+            await new AdvertisingManager(this).RegisterAdvertisement(advertisement);
+        }
     }
 }
