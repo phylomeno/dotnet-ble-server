@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ;
 using BleServer.Infrastructure.BlueZ.Gatt;
@@ -36,7 +37,6 @@ namespace BleServer
                 .AddService(gattService1Properties)
                 .WithCharacteristic(gattCharacteristic1Properties, new[] {gattDescriptor1Properties})
 
-
             var application = new GattApplication("/");
             await connection.RegisterObjectAsync(application);
 
@@ -64,7 +64,7 @@ namespace BleServer
 
     internal class GattApplicationBuilder
     {
-        IList<GattServiceBuilder> _ServiceBuilders = new List<GattServiceBuilder>();
+        private readonly IList<GattServiceBuilder> _ServiceBuilders = new List<GattServiceBuilder>();
 
         public GattServiceBuilder AddService(GattService1Properties gattService1Properties)
         {
@@ -72,17 +72,10 @@ namespace BleServer
             _ServiceBuilders.Add(gattServiceBuilder);
             return gattServiceBuilder;
         }
-    }
 
-    internal class GattServiceBuilder
-    {
-        private readonly IList<Tuple<GattCharacteristic1Properties, GattDescriptor1Properties[]>> _Characteristics =
-            new List<Tuple<GattCharacteristic1Properties, GattDescriptor1Properties[]>>();
-
-        public void WithCharacteristic(GattCharacteristic1Properties gattCharacteristic1Properties,
-            GattDescriptor1Properties[] gattDescriptor1Properties)
+        public IEnumerable<ServiceDescription> BuildServiceDescriptions()
         {
-            _Characteristics.Add(Tuple.Create(gattCharacteristic1Properties, gattDescriptor1Properties));
+            return _ServiceBuilders.Select(s => s.BuildServiceDescription());
         }
     }
 }
