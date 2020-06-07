@@ -1,10 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BleServer.Infrastructure.BlueZ.Core;
 using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
+    public class GattApplicationManager
+    {
+        ServerContext _ServerContext;
+
+        public GattApplicationManager(ServerContext serverContext)
+        {
+            _ServerContext = serverContext;
+        }
+
+        public RegisterGattApplication()
+
+    }
     [DBusInterface("org.freedesktop.DBus.ObjectManager")]
     public class GattApplication : IObjectManager
     {

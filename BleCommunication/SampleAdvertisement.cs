@@ -15,7 +15,7 @@ namespace BleServer
                 LocalName = "A",
             };
 
-            await new AdvertisingManager(serverContext).CreateAdvertisement("/org/bluez/example/advertisement0", advertisementProperties);
+            await new AdvertisingManager(serverContext).CreateAdvertisement(advertisementProperties);
         }
     }
 }
