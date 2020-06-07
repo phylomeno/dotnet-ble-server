@@ -5,8 +5,14 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 {
     internal class GattServiceBuilder
     {
+        private readonly GattService1Properties _Service1Properties;
         private readonly IList<CharacteristicDescription> _Characteristics =
             new List<CharacteristicDescription>();
+
+        public GattServiceBuilder(GattService1Properties service1Properties)
+        {
+            _Service1Properties = service1Properties;
+        }
 
         public void WithCharacteristic(GattCharacteristic1Properties gattCharacteristic1Properties,
             GattDescriptor1Properties[] gattDescriptor1Properties)
@@ -16,7 +22,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public ServiceDescription BuildServiceDescription()
         {
-            return new ServiceDescription(_Characteristics);
+            return new ServiceDescription(_Service1Properties, _Characteristics);
         }
     }
 }

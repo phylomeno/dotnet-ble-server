@@ -5,14 +5,14 @@ namespace BleServer.Infrastructure.Bluez.Gatt
 {
     public class CharacteristicDescription
     {
-        private GattCharacteristic1Properties _CharacteristicsProperties;
+        public GattCharacteristic1Properties CharacteristicsProperties { get; }
 
-        private IList<GattDescriptor1Properties> _Descriptors;
+        public IList<GattDescriptor1Properties> Descriptors { get; }
 
         public CharacteristicDescription(GattCharacteristic1Properties characteristicsProperties, IList<GattDescriptor1Properties> descriptors)
         {
-            _CharacteristicsProperties = characteristicsProperties;
-            _Descriptors = descriptors;
+            CharacteristicsProperties = characteristicsProperties;
+            Descriptors = descriptors;
         }
     }
 }

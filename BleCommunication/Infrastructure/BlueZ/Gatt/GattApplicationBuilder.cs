@@ -9,7 +9,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public GattServiceBuilder AddService(GattService1Properties gattService1Properties)
         {
-            var gattServiceBuilder = new GattServiceBuilder();
+            var gattServiceBuilder = new GattServiceBuilder(gattService1Properties);
             _ServiceBuilders.Add(gattServiceBuilder);
             return gattServiceBuilder;
         }
