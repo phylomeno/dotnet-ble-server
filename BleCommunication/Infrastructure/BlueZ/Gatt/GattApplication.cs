@@ -5,6 +5,10 @@ using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
+    public class GattServiceDescription
+    {
+    }
+
     [DBusInterface("org.freedesktop.DBus.ObjectManager")]
     public class GattApplication : IObjectManager
     {

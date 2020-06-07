@@ -18,8 +18,9 @@ namespace BleServer
                 using (var connection = new Connection(Address.System))
                 {
                     await ConnectToDBus(connection);
-                    await SampleAdvertisement.RegisterSampleAdvertisement(new ServerContext());
-                    await SampleGattApplication.RegisterGattApplication(connection);
+                    var serverContext = new ServerContext();
+                    await SampleAdvertisement.RegisterSampleAdvertisement(serverContext);
+                    await SampleGattApplication.RegisterGattApplication(serverContext);
 
                     Console.WriteLine("Press CTRL+C to quit");
                     await Task.Delay(-1);
