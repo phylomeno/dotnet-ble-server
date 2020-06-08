@@ -2,7 +2,7 @@
 using BleServer.Infrastructure.BlueZ.Advertisements;
 using BleServer.Infrastructure.BlueZ.Core;
 
-namespace BleServer
+namespace Examples
 {
     public class SampleAdvertisement
     {

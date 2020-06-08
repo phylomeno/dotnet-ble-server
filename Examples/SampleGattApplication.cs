@@ -3,7 +3,7 @@ using BleServer.Infrastructure.BlueZ;
 using BleServer.Infrastructure.BlueZ.Core;
 using BleServer.Infrastructure.BlueZ.Gatt;
 
-namespace BleServer
+namespace Examples
 {
     internal class SampleGattApplication
     {

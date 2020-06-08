@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
-    internal class GattApplicationBuilder
+    public class GattApplicationBuilder
     {
         private readonly IList<GattServiceBuilder> _ServiceBuilders = new List<GattServiceBuilder>();
 
