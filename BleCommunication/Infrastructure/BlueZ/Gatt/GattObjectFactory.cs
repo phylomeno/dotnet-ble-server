@@ -6,7 +6,7 @@
 
         public GattService CreateGattService(GattServiceDescription serviceDescription)
         {
-            var serviceProperties = new GattService1Properties()
+            var serviceProperties = new GattService1Properties
             {
                 UUID = serviceDescription.UUID,
                 Primary = serviceDescription.Primary
@@ -23,7 +23,20 @@
 
         private static string ApplicationPrefix()
         {
-            return $"/org/bluez/example/";
+            return "/org/bluez/example/";
+        }
+
+        public GattCharacteristic CreateGattCharacteristic(GattCharacteristicDescription characteristic)
+        {
+            var characteristicProperties = new GattCharacteristic1Properties
+            {
+                UUID = characteristic.UUID,
+                Flags = characteristic.Flags
+            };
+            var gattCharacteristic = new GattCharacteristic(null,
+                characteristicProperties);
+
+            return gattCharacteristic;
         }
     }
 }

@@ -22,7 +22,6 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
             foreach (var serviceDescription in gattServiceDescriptions)
             {
-                // todo dynamically create object path
                 var gattService = gattObjectFactory.CreateGattService(serviceDescription);
                 await _ServerContext.Connection.RegisterObjectAsync(gattService);
 
