@@ -14,7 +14,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
             _ServerContext = serverContext;
         }
 
-        public async Task RegisterGattApplication(IEnumerable<ServiceDescription> gattServiceDescriptions)
+        public async Task RegisterGattApplication(IEnumerable<GattServiceDescription> gattServiceDescriptions)
         {
             var application = new GattApplication("/");
             await _ServerContext.Connection.RegisterObjectAsync(application);

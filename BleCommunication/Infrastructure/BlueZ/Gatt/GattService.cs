@@ -5,7 +5,7 @@ using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
-    public class GattService : PropertiesBase<GattService1Properties>, IGattService1, IObjectManagerProperties
+    internal class GattService : PropertiesBase<GattService1Properties>, IGattService1, IObjectManagerProperties
     {
         public IList<GattCharacteristic> Characteristics { get; } = new List<GattCharacteristic>();
 

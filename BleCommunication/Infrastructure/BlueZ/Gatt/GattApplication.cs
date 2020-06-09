@@ -6,7 +6,7 @@ using Tmds.DBus;
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
     [DBusInterface("org.freedesktop.DBus.ObjectManager")]
-    public class GattApplication : IObjectManager
+    internal class GattApplication : IObjectManager
     {
         private readonly IList<GattService> _GattServices = new List<GattService>();
 

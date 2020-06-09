@@ -14,7 +14,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
             return gattServiceBuilder;
         }
 
-        public IEnumerable<ServiceDescription> BuildServiceDescriptions()
+        public IEnumerable<GattServiceDescription> BuildServiceDescriptions()
         {
             return _ServiceBuilders.Select(s => s.ServiceDescription);
         }

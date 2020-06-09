@@ -3,7 +3,7 @@ using BleServer.Infrastructure.BlueZ.Gatt;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
-    public class ServiceDescription
+    internal class ServiceDescription
     {
         public GattService1Properties Service1Properties { get; }
         public IList<CharacteristicDescription> Characteristic { get; }
