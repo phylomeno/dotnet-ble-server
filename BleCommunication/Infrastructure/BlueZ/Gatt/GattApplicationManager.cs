@@ -16,13 +16,14 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public async Task RegisterGattApplication(IEnumerable<GattServiceDescription> gattServiceDescriptions)
         {
+            var gattObjectFactory = new GattObjectFactory();
             var application = new GattApplication("/");
             await _ServerContext.Connection.RegisterObjectAsync(application);
 
             foreach (var serviceDescription in gattServiceDescriptions)
             {
                 // todo dynamically create object path
-                var gattService = new GattService("/org/bluez/example/service0", null);
+                var gattService = gattObjectFactory.CreateGattService(serviceDescription);
                 await _ServerContext.Connection.RegisterObjectAsync(gattService);
 
                 var characteristicObjectPaths = new List<ObjectPath>();
