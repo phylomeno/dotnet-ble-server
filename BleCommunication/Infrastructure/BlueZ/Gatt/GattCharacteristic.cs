@@ -13,8 +13,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
 
-        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(objectPath,
-            properties)
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(properties)
         {
         }
 

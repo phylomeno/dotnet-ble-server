@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BleServer.Infrastructure.BlueZ.Core;
-using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
@@ -9,7 +8,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
     {
         public IList<GattCharacteristic> Characteristics { get; } = new List<GattCharacteristic>();
 
-        public GattService(ObjectPath objectPath, GattService1Properties properties) : base(objectPath, properties)
+        public GattService(GattService1Properties properties) : base(properties)
         {
         }
 

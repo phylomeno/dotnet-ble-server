@@ -8,7 +8,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
     public class GattDescriptor : PropertiesBase<GattDescriptor1Properties>, IGattDescriptor1, IObjectManagerProperties
     {
         public GattDescriptor(ObjectPath objectPath, GattDescriptor1Properties gattDescriptor1Properties)
-            : base(objectPath, gattDescriptor1Properties)
+            : base(gattDescriptor1Properties)
         {
 
         }

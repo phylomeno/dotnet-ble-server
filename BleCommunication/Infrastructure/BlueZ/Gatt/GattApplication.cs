@@ -19,6 +19,8 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public void AddService(GattService gattService)
         {
+            var servicePath = ObjectPath + "/service" + _GattServices.Count;
+            gattService.SetObjectPath(servicePath);
             _GattServices.Add(gattService);
         }
 

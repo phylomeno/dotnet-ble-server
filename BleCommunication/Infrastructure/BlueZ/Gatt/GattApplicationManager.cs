@@ -27,16 +27,14 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
                 var characteristicObjectPaths = new List<ObjectPath>();
                 application.AddService(gattService);
-                /*
                 foreach (var characteristic in serviceDescription.GattCharacteristicDescriptions)
                 {
-                    // todo dynamically create object path
-                    var gattCharacteristic = new GattCharacteristic("/org/bluez/example/service0/characteristic0",
-                        characteristic.CharacteristicsProperties);
+                    var gattCharacteristic = gattObjectFactory.CreateGattCharacteristic(characteristic);
                     await _ServerContext.Connection.RegisterObjectAsync(gattCharacteristic);
 
                     gattService.AddCharacteristic(gattCharacteristic);
 
+                    /*
                     characteristic.CharacteristicsProperties.Service = gattService.ObjectPath;
                     characteristicObjectPaths.Add(gattCharacteristic.ObjectPath);
                     foreach (var descriptor in characteristic.Descriptors)
@@ -50,11 +48,11 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
                         gattCharacteristic.AddDescriptor(gattDescriptor);
                     }
+                    */
 
                 }
 
-                serviceDescription.Service1Properties.Characteristics = characteristicObjectPaths.ToArray();
-            */
+                //serviceDescription.Service1Properties.Characteristics = characteristicObjectPaths.ToArray();
             }
 
             var gattManager = _ServerContext.Connection.CreateProxy<IGattManager1>("org.bluez", "/org/bluez/hci0");
