@@ -2,14 +2,13 @@
 {
     internal class GattObjectFactory
     {
-        public GattService CreateGattService(GattServiceDescription serviceDescription)
+        public GattService1Properties CreateGattService(GattServiceDescription serviceDescription)
         {
-            var serviceProperties = new GattService1Properties
+            return new GattService1Properties
             {
                 UUID = serviceDescription.UUID,
                 Primary = serviceDescription.Primary
             };
-            return new GattService(serviceProperties);
         }
 
         public GattCharacteristic CreateGattCharacteristic(GattCharacteristicDescription characteristic)

@@ -17,11 +17,13 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public ObjectPath ObjectPath { get; }
 
-        public void AddService(GattService gattService)
+        public GattService AddService(GattService1Properties gattService)
         {
             var servicePath = ObjectPath + "/service" + _GattServices.Count;
-            gattService.SetObjectPath(servicePath);
-            _GattServices.Add(gattService);
+            var service = new GattService(gattService);
+            service.SetObjectPath(servicePath);
+            _GattServices.Add(service);
+            return service;
         }
 
         public Task<IDictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>>> GetManagedObjectsAsync()

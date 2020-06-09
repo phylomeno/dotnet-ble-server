@@ -22,11 +22,10 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
             foreach (var serviceDescription in gattServiceDescriptions)
             {
-                var gattService = gattObjectFactory.CreateGattService(serviceDescription);
+                var gattService = application.AddService(gattObjectFactory.CreateGattService(serviceDescription));
                 await _ServerContext.Connection.RegisterObjectAsync(gattService);
 
                 var characteristicObjectPaths = new List<ObjectPath>();
-                application.AddService(gattService);
                 foreach (var characteristic in serviceDescription.GattCharacteristicDescriptions)
                 {
                     var gattCharacteristic = gattObjectFactory.CreateGattCharacteristic(characteristic);
