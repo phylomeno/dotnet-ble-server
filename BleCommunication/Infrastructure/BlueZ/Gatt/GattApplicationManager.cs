@@ -22,12 +22,13 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
             foreach (var serviceDescription in gattServiceDescriptions)
             {
                 // todo dynamically create object path
-                var gattService = new GattService("/org/bluez/example/service0", serviceDescription.Service1Properties);
+                var gattService = new GattService("/org/bluez/example/service0", null);
                 await _ServerContext.Connection.RegisterObjectAsync(gattService);
 
                 var characteristicObjectPaths = new List<ObjectPath>();
                 application.AddService(gattService);
-                foreach (var characteristic in serviceDescription.Characteristic)
+                /*
+                foreach (var characteristic in serviceDescription.GattCharacteristicDescriptions)
                 {
                     // todo dynamically create object path
                     var gattCharacteristic = new GattCharacteristic("/org/bluez/example/service0/characteristic0",
@@ -53,6 +54,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
                 }
 
                 serviceDescription.Service1Properties.Characteristics = characteristicObjectPaths.ToArray();
+            */
             }
 
             var gattManager = _ServerContext.Connection.CreateProxy<IGattManager1>("org.bluez", "/org/bluez/hci0");
