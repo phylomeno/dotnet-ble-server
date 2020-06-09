@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
-using BleServer.Infrastructure.BlueZ;
 
-namespace BleServer.Infrastructure.Bluez.Gatt
+namespace BleServer.Infrastructure.BlueZ.Gatt
 {
     public class CharacteristicDescription
     {
-        public GattCharacteristic1Properties CharacteristicsProperties { get; }
+        public GattCharacteristicDescription CharacteristicsProperties { get; }
 
-        public IList<GattDescriptor1Properties> Descriptors { get; }
+        public IList<GattDescriptorDescription> Descriptors { get; }
 
-        public CharacteristicDescription(GattCharacteristic1Properties characteristicsProperties, IList<GattDescriptor1Properties> descriptors)
+        public CharacteristicDescription(GattCharacteristicDescription characteristicsProperties, IList<GattDescriptorDescription> descriptors)
         {
             CharacteristicsProperties = characteristicsProperties;
             Descriptors = descriptors;

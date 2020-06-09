@@ -7,16 +7,16 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
     {
         private readonly IList<GattServiceBuilder> _ServiceBuilders = new List<GattServiceBuilder>();
 
-        public GattServiceBuilder AddService(GattService1Properties gattService1Properties)
+        public GattServiceBuilder AddService(GattServiceDescription gattServiceDescription)
         {
-            var gattServiceBuilder = new GattServiceBuilder(gattService1Properties);
+            var gattServiceBuilder = new GattServiceBuilder(gattServiceDescription);
             _ServiceBuilders.Add(gattServiceBuilder);
             return gattServiceBuilder;
         }
 
         public IEnumerable<ServiceDescription> BuildServiceDescriptions()
         {
-            return _ServiceBuilders.Select(s => s.BuildServiceDescription());
+            return _ServiceBuilders.Select(s => s.ServiceDescription);
         }
     }
 }

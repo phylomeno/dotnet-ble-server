@@ -1,28 +1,24 @@
-﻿using System.Collections.Generic;
-using BleServer.Infrastructure.Bluez.Gatt;
-
-namespace BleServer.Infrastructure.BlueZ.Gatt
+﻿namespace BleServer.Infrastructure.BlueZ.Gatt
 {
     public class GattServiceBuilder
     {
-        private readonly GattService1Properties _Service1Properties;
-        private readonly IList<CharacteristicDescription> _Characteristics =
-            new List<CharacteristicDescription>();
+        public GattServiceDescription ServiceDescription { get; }
 
-        public GattServiceBuilder(GattService1Properties service1Properties)
+        public GattServiceBuilder(GattServiceDescription gattServiceServiceDescription)
         {
-            _Service1Properties = service1Properties;
+            ServiceDescription = gattServiceServiceDescription;
         }
 
-        public void WithCharacteristic(GattCharacteristic1Properties gattCharacteristic1Properties,
-            GattDescriptor1Properties[] gattDescriptor1Properties)
+        public void WithCharacteristic(GattCharacteristicDescription gattCharacteristicDescription,
+            GattDescriptorDescription[] gattDescriptorDescriptions)
         {
-            _Characteristics.Add(new CharacteristicDescription(gattCharacteristic1Properties, gattDescriptor1Properties));
-        }
+            var characteristicDescription = new GattCharacteristicDescription();
+            foreach (var description in gattDescriptorDescriptions)
+            {
+                characteristicDescription.AddDescriptor(description);
+            }
 
-        public ServiceDescription BuildServiceDescription()
-        {
-            return new ServiceDescription(_Service1Properties, _Characteristics);
+            ServiceDescription.AddCharacteristic(characteristicDescription);
         }
     }
 }

@@ -8,7 +8,7 @@ using Tmds.DBus;
 namespace BleServer.Infrastructure.BlueZ
 {
     [DBusInterface("org.bluez.GattService1")]
-    public interface IGattService1 : IDBusObject
+    internal interface IGattService1 : IDBusObject
     {
         Task<object> GetAsync(string prop);
         Task<GattService1Properties> GetAllAsync();
@@ -17,7 +17,7 @@ namespace BleServer.Infrastructure.BlueZ
     }
 
     [Dictionary]
-    public class GattService1Properties
+    internal class GattService1Properties
     {
         private string _UUID = default (string);
         public string UUID

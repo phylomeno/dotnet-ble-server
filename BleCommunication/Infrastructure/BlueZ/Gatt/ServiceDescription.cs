@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BleServer.Infrastructure.Bluez.Gatt;
+using BleServer.Infrastructure.BlueZ.Gatt;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt
 {
