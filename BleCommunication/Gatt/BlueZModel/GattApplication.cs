@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Core;
+using BleServer.Core;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt.BlueZModel
+namespace BleServer.Gatt.BlueZModel
 {
     [DBusInterface("org.freedesktop.DBus.ObjectManager")]
     internal class GattApplication : IObjectManager

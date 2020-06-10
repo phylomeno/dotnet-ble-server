@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Advertisements
+namespace BleServer.Advertisements
 {
     [Dictionary]
     [SuppressMessage("ReSharper", "ConvertToAutoProperty")]

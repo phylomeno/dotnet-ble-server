@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Advertisements
+namespace BleServer.Advertisements
 {
     [DBusInterface("org.bluez.LEAdvertisement1")]
     internal interface ILEAdvertisement1 : IDBusObject

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Core;
+using BleServer.Core;
 
-namespace BleServer.Infrastructure.BlueZ.Advertisements
+namespace BleServer.Advertisements
 {
     public class Advertisement : PropertiesBase<AdvertisementProperties>, ILEAdvertisement1
     {

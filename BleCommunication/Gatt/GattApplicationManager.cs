@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Core;
-using BleServer.Infrastructure.BlueZ.Gatt.BlueZModel;
-using BleServer.Infrastructure.BlueZ.Gatt.Description;
+using BleServer.Core;
+using BleServer.Gatt.BlueZModel;
+using BleServer.Gatt.Description;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt
+namespace BleServer.Gatt
 {
     public class GattApplicationManager
     {

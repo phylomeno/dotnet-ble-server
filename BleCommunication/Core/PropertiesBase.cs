@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Utilities;
+using BleServer.Utilities;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Core
+namespace BleServer.Core
 {
     public abstract class PropertiesBase<TV>
     {

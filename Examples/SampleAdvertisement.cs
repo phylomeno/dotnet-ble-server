@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Advertisements;
-using BleServer.Infrastructure.BlueZ.Core;
+using BleServer.Advertisements;
+using BleServer.Core;
 
 namespace Examples
 {

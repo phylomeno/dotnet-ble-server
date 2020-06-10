@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt.Description
+namespace BleServer.Gatt.Description
 {
     public class GattApplicationBuilder
     {

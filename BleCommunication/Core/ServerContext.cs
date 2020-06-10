@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Advertisements;
+using BleServer.Advertisements;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Core
+namespace BleServer.Core
 {
     public class ServerContext
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BleServer.Infrastructure.BlueZ.Core
+namespace BleServer.Core
 {
     internal interface IObjectManagerProperties
     {

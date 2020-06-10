@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt.Description
+namespace BleServer.Gatt.Description
 {
     public class GattServiceDescription
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BleServer.Infrastructure.BlueZ.Utilities
+namespace BleServer.Utilities
 {
     public static class PropertyAccessExtensions
     {

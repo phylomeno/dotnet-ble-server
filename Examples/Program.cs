@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Core;
+using BleServer.Core;
 
 namespace Examples
 {

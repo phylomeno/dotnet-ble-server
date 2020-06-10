@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Core;
+using BleServer.Core;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Advertisements
+namespace BleServer.Advertisements
 {
     public class AdvertisingManager
     {

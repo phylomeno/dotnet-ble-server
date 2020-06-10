@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BleServer.Infrastructure.BlueZ.Core;
+using BleServer.Core;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt.BlueZModel
+namespace BleServer.Gatt.BlueZModel
 {
     internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
         IObjectManagerProperties
