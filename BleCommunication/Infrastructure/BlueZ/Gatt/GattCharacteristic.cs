@@ -58,9 +58,15 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public GattDescriptor AddDescriptor(GattDescriptor1Properties gattDescriptorProperties)
         {
-            var gattDescriptor = new GattDescriptor(null, gattDescriptorProperties);
+            gattDescriptorProperties.Characteristic = ObjectPath;
+            var gattDescriptor = new GattDescriptor(NextDescriptorPath(), gattDescriptorProperties);
             Descriptors.Add(gattDescriptor);
             return gattDescriptor;
+        }
+
+        private ObjectPath NextDescriptorPath()
+        {
+            return ObjectPath + "/descriptor" + Descriptors.Count;
         }
     }
 }
