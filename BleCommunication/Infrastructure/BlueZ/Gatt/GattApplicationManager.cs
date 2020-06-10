@@ -16,46 +16,66 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public async Task RegisterGattApplication(IEnumerable<GattServiceDescription> gattServiceDescriptions)
         {
-            var gattObjectFactory = new GattObjectFactory();
-            var application = new GattApplication("/");
-            await _ServerContext.Connection.RegisterObjectAsync(application);
+            await BuildApplicationTree(gattServiceDescriptions);
+            await RegisterApplicationInBluez();
+        }
+
+        private async Task BuildApplicationTree(IEnumerable<GattServiceDescription> gattServiceDescriptions)
+        {
+            var application = await BuildGattApplication();
 
             foreach (var serviceDescription in gattServiceDescriptions)
             {
-                var gattService = application.AddService(gattObjectFactory.CreateGattService(serviceDescription));
-                await _ServerContext.Connection.RegisterObjectAsync(gattService);
+                var service = await AddNewService(application, serviceDescription);
 
-                var characteristicObjectPaths = new List<ObjectPath>();
-                foreach (var characteristic in serviceDescription.GattCharacteristicDescriptions)
+                foreach (var characteristicDescription in serviceDescription.GattCharacteristicDescriptions)
                 {
-                    var gattCharacteristic = gattObjectFactory.CreateGattCharacteristic(characteristic);
-                    await _ServerContext.Connection.RegisterObjectAsync(gattCharacteristic);
+                    var characteristic = await AddNewCharacteristic(service, characteristicDescription);
 
-                    gattService.AddCharacteristic(gattCharacteristic);
-
-                    /*
-                    characteristic.CharacteristicsProperties.Service = gattService.ObjectPath;
-                    characteristicObjectPaths.Add(gattCharacteristic.ObjectPath);
-                    foreach (var descriptor in characteristic.Descriptors)
+                    foreach (var descriptorDescription in characteristicDescription.Descriptors)
                     {
-                        descriptor.Characteristic = gattCharacteristic.ObjectPath;
-                        // todo dynamically create object path
-                        var gattDescriptor = new GattDescriptor(
-                            "/org/bluez/example/service0/characteristic0/descriptor0",
-                            descriptor);
-                        await _ServerContext.Connection.RegisterObjectAsync(gattDescriptor);
-
-                        gattCharacteristic.AddDescriptor(gattDescriptor);
+                        await AddNewDescriptor(characteristic, descriptorDescription);
                     }
-                    */
-
                 }
-
-                //serviceDescription.Service1Properties.Characteristics = characteristicObjectPaths.ToArray();
             }
+        }
 
+        private async Task RegisterApplicationInBluez()
+        {
             var gattManager = _ServerContext.Connection.CreateProxy<IGattManager1>("org.bluez", "/org/bluez/hci0");
             await gattManager.RegisterApplicationAsync(new ObjectPath("/"), new Dictionary<string, object>());
+        }
+
+        private async Task<GattApplication> BuildGattApplication()
+        {
+            var application = new GattApplication("/");
+            await _ServerContext.Connection.RegisterObjectAsync(application);
+            return application;
+        }
+
+        private async Task<GattService> AddNewService(GattApplication application,
+            GattServiceDescription serviceDescription)
+        {
+            var gattService1Properties = GattPropertiesFactory.CreateGattService(serviceDescription);
+            var gattService = application.AddService(gattService1Properties);
+            await _ServerContext.Connection.RegisterObjectAsync(gattService);
+            return gattService;
+        }
+
+        private async Task<GattCharacteristic> AddNewCharacteristic(GattService gattService, GattCharacteristicDescription characteristic)
+        {
+            var gattCharacteristic1Properties = GattPropertiesFactory.CreateGattCharacteristic(characteristic);
+            var gattCharacteristic = gattService.AddCharacteristic(gattCharacteristic1Properties);
+            await _ServerContext.Connection.RegisterObjectAsync(gattCharacteristic);
+            return gattCharacteristic;
+        }
+
+        private async Task AddNewDescriptor(GattCharacteristic gattCharacteristic,
+            GattDescriptorDescription descriptor)
+        {
+            var gattDescriptor1Properties = GattPropertiesFactory.CreateGattDescriptor(descriptor);
+            var gattDescriptor = gattCharacteristic.AddDescriptor(gattDescriptor1Properties);
+            await _ServerContext.Connection.RegisterObjectAsync(gattDescriptor);
         }
     }
 }
