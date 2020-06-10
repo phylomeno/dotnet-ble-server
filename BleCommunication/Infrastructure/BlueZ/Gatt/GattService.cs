@@ -6,7 +6,9 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 {
     internal class GattService : PropertiesBase<GattService1Properties>, IGattService1, IObjectManagerProperties
     {
-        public IList<GattCharacteristic> Characteristics { get; } = new List<GattCharacteristic>();
+        private readonly IList<GattCharacteristic> _Characteristics = new List<GattCharacteristic>();
+
+        public IEnumerable<GattCharacteristic> Characteristics => _Characteristics;
 
         public GattService(GattService1Properties properties) : base(properties)
         {
@@ -30,7 +32,9 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
         public GattCharacteristic AddCharacteristic(GattCharacteristic1Properties characteristic)
         {
             var gattCharacteristic = new GattCharacteristic(null, characteristic);
-            Characteristics.Add(gattCharacteristic);
+            var characteristicPath= ObjectPath + "/characteristic" + _Characteristics.Count;
+            gattCharacteristic.SetObjectPath(characteristicPath);
+            _Characteristics.Add(gattCharacteristic);
             return gattCharacteristic;
         }
     }
