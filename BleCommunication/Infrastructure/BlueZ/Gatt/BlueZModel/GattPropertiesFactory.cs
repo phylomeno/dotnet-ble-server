@@ -1,6 +1,6 @@
 ﻿using BleServer.Infrastructure.BlueZ.Gatt.Description;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt
+namespace BleServer.Infrastructure.BlueZ.Gatt.BlueZModel
 {
     internal class GattPropertiesFactory
     {

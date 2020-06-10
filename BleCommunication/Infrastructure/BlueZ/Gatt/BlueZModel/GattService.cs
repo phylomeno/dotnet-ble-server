@@ -2,7 +2,7 @@
 using System.Linq;
 using BleServer.Infrastructure.BlueZ.Core;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt
+namespace BleServer.Infrastructure.BlueZ.Gatt.BlueZModel
 {
     internal class GattService : PropertiesBase<GattService1Properties>, IGattService1, IObjectManagerProperties
     {

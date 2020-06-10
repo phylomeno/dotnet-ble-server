@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt
+namespace BleServer.Infrastructure.BlueZ.Gatt.BlueZModel
 {
-    public class GattDescriptor : PropertiesBase<GattDescriptor1Properties>, IGattDescriptor1, IObjectManagerProperties
+    internal class GattDescriptor : PropertiesBase<GattDescriptor1Properties>, IGattDescriptor1, IObjectManagerProperties
     {
         public GattDescriptor(ObjectPath objectPath, GattDescriptor1Properties gattDescriptor1Properties)
             : base(gattDescriptor1Properties)

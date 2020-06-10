@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt
+namespace BleServer.Infrastructure.BlueZ.Gatt.BlueZModel
 {
-    public class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
+    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
         IObjectManagerProperties
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Tmds.DBus;
 
-namespace BleServer.Infrastructure.BlueZ.Gatt
+namespace BleServer.Infrastructure.BlueZ.Gatt.BlueZModel
 {
     [DBusInterface("org.freedesktop.DBus.ObjectManager")]
     internal class GattApplication : IObjectManager
