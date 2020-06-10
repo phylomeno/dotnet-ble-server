@@ -1,4 +1,4 @@
-﻿namespace BleServer.Infrastructure.BlueZ.Gatt
+﻿namespace BleServer.Infrastructure.BlueZ.Gatt.Description
 {
     public class GattDescriptorDescription
     {

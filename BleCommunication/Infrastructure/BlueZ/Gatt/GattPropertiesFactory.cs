@@ -1,4 +1,6 @@
-﻿namespace BleServer.Infrastructure.BlueZ.Gatt
+﻿using BleServer.Infrastructure.BlueZ.Gatt.Description;
+
+namespace BleServer.Infrastructure.BlueZ.Gatt
 {
     internal class GattPropertiesFactory
     {

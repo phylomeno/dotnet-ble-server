@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
+using BleServer.Infrastructure.BlueZ.Gatt.Description;
 using Tmds.DBus;
 
 namespace BleServer.Infrastructure.BlueZ.Gatt

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using BleServer.Infrastructure.BlueZ.Core;
 using BleServer.Infrastructure.BlueZ.Gatt;
+using BleServer.Infrastructure.BlueZ.Gatt.Description;
 
 namespace Examples
 {
