@@ -32,11 +32,17 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
         public GattCharacteristic AddCharacteristic(GattCharacteristic1Properties characteristic)
         {
             characteristic.Service = ObjectPath;
-            var gattCharacteristic = new GattCharacteristic(null, characteristic);
-            var characteristicPath= ObjectPath + "/characteristic" + _Characteristics.Count;
-            gattCharacteristic.SetObjectPath(characteristicPath);
+            var gattCharacteristic = new GattCharacteristic(NextCharacteristicPath(), characteristic);
             _Characteristics.Add(gattCharacteristic);
+
+            Properties.Characteristics = Properties.Characteristics.Append(NextCharacteristicPath()).ToArray();
+            
             return gattCharacteristic;
+        }
+
+        private string NextCharacteristicPath()
+        {
+            return ObjectPath + "/characteristic" + _Characteristics.Count;
         }
     }
 }

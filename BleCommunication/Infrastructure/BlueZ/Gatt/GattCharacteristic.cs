@@ -15,6 +15,7 @@ namespace BleServer.Infrastructure.BlueZ.Gatt
 
         public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(properties)
         {
+            this.SetObjectPath(objectPath);
         }
 
         public Task<byte[]> ReadValueAsync(IDictionary<string, object> options)
