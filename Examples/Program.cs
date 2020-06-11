@@ -13,6 +13,7 @@ namespace Examples
             Task.Run(async () =>
             {
                     var serverContext = new ServerContext();
+                    await serverContext.Connect();
                     await SampleAdvertisement.RegisterSampleAdvertisement(serverContext);
                     await SampleGattApplication.RegisterGattApplication(serverContext);
 

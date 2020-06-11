@@ -9,7 +9,11 @@ namespace BleServer.Core
         public ServerContext()
         {
             Connection = new Connection(Address.System);
-            Connection.ConnectAsync();
+        }
+
+        public async Task Connect()
+        {
+            await Connection.ConnectAsync();
         }
 
         public Connection Connection { get; }
