@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BleServer.Core;
 using BleServer.Gatt.BlueZModel;
@@ -50,7 +51,8 @@ namespace BleServer.Gatt
 
         private async Task<GattApplication> BuildGattApplication()
         {
-            var application = new GattApplication("/");
+            var appId = Guid.NewGuid().ToString().Substring(0, 8);
+            var application = new GattApplication($"/{appId}");
             await _ServerContext.Connection.RegisterObjectAsync(application);
             return application;
         }
