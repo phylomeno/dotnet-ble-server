@@ -15,6 +15,12 @@ namespace BleServer.Core
             Properties = properties;
         }
 
+        protected PropertiesBase(ObjectPath objectPath, TV properties)
+        {
+            _ObjectPath = objectPath;
+            Properties = properties;
+        }
+
         public ObjectPath ObjectPath => _ObjectPath;
 
         public void SetObjectPath(ObjectPath objectPath)

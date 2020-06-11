@@ -6,7 +6,7 @@ namespace BleServer.Advertisements
 {
     public class Advertisement : PropertiesBase<AdvertisementProperties>, ILEAdvertisement1
     {
-        public Advertisement(string objectPath, AdvertisementProperties properties) : base(properties)
+        public Advertisement(string objectPath, AdvertisementProperties properties) : base(objectPath, properties)
         {
         }
 
