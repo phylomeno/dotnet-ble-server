@@ -1,4 +1,5 @@
 ﻿using BleServer.Gatt.Description;
+using Tmds.DBus;
 
 namespace BleServer.Gatt.BlueZModel
 {
@@ -9,7 +10,8 @@ namespace BleServer.Gatt.BlueZModel
             return new GattService1Properties
             {
                 UUID = serviceDescription.UUID,
-                Primary = serviceDescription.Primary
+                Primary = serviceDescription.Primary,
+                Characteristics = new ObjectPath[0] 
             };
         }
 
