@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using BleServer.Advertisements;
+﻿using System;
+using System.Threading.Tasks;
 using Tmds.DBus;
 
 namespace BleServer.Core
 {
-    public class ServerContext
+    public class ServerContext : IDisposable
     {
         public ServerContext()
         {
@@ -18,11 +18,9 @@ namespace BleServer.Core
 
         public Connection Connection { get; }
 
-        public async Task CreateAdvertisement(AdvertisementProperties advertisementProperties, string objectPath)
+        public void Dispose()
         {
-            var advertisement = new Advertisement(objectPath, advertisementProperties);
-
-            await new AdvertisingManager(this).RegisterAdvertisement(advertisement);
+            Connection.Dispose();
         }
     }
 }

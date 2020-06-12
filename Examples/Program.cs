@@ -9,16 +9,19 @@ namespace Examples
         private static void Main()
         {
             Console.WriteLine("Hello Bluetooth");
+            Console.ReadKey();
 
             Task.Run(async () =>
             {
-                    var serverContext = new ServerContext();
+                using (var serverContext = new ServerContext())
+                {
                     await serverContext.Connect();
                     await SampleAdvertisement.RegisterSampleAdvertisement(serverContext);
                     await SampleGattApplication.RegisterGattApplication(serverContext);
 
                     Console.WriteLine("Press CTRL+C to quit");
                     await Task.Delay(-1);
+                }
             }).Wait();
         }
     }
