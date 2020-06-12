@@ -12,13 +12,12 @@
         public void WithCharacteristic(GattCharacteristicDescription gattCharacteristicDescription,
             GattDescriptorDescription[] gattDescriptorDescriptions)
         {
-            var characteristicDescription = new GattCharacteristicDescription();
             foreach (var description in gattDescriptorDescriptions)
             {
-                characteristicDescription.AddDescriptor(description);
+                gattCharacteristicDescription.AddDescriptor(description);
             }
 
-            ServiceDescription.AddCharacteristic(characteristicDescription);
+            ServiceDescription.AddCharacteristic(gattCharacteristicDescription);
         }
     }
 }
