@@ -8,6 +8,8 @@ namespace BleServer.Gatt.Description
 
         public IEnumerable<GattDescriptorDescription> Descriptors => _Descriptors;
 
+        public ICharacteristicSource CharacteristicSource { get; set; }
+
         public string UUID { get; set; }
         public string[] Flags { get; set; }
 

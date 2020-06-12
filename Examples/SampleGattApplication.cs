@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Text;
+using System.Threading.Tasks;
 using BleServer.Core;
 using BleServer.Gatt;
 using BleServer.Gatt.Description;
@@ -9,7 +11,7 @@ namespace Examples
     {
         public static async Task RegisterGattApplication(ServerContext serverContext)
         {
-            var gattServiceDescription = new GattServiceDescription 
+            var gattServiceDescription = new GattServiceDescription
             {
                 UUID = "12345678-1234-5678-1234-56789abcdef0",
                 Primary = true
@@ -17,8 +19,9 @@ namespace Examples
 
             var gattCharacteristicDescription = new GattCharacteristicDescription
             {
+                CharacteristicSource = new ExampleCharacteristicSource(),
                 UUID = "12345678-1234-5678-1234-56789abcdef1",
-                Flags = new[] {"read", "write", "writable-auxiliaries"},
+                Flags = new[] {"read", "write", "writable-auxiliaries"}
             };
             var gattDescriptorDescription = new GattDescriptorDescription
             {
@@ -32,6 +35,21 @@ namespace Examples
                 .WithCharacteristic(gattCharacteristicDescription, new[] {gattDescriptorDescription});
 
             await new GattApplicationManager(serverContext).RegisterGattApplication(gab.BuildServiceDescriptions());
+        }
+
+        internal class ExampleCharacteristicSource : ICharacteristicSource
+        {
+            public Task WriteValueAsync(byte[] value)
+            {
+                Console.WriteLine("Writing value");
+                return Task.Run(() => Console.WriteLine(Encoding.ASCII.GetChars(value)));
+            }
+
+            public Task<byte[]> ReadValueAsync()
+            {
+                Console.WriteLine("Reading value");
+                return Task.FromResult(Encoding.ASCII.GetBytes("Hello BLE"));
+            }
         }
     }
 }

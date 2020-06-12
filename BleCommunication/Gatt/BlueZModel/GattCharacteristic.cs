@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using BleServer.Core;
 using Tmds.DBus;
@@ -13,20 +12,21 @@ namespace BleServer.Gatt.BlueZModel
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
 
-        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(objectPath, properties)
+        private readonly ICharacteristicSource _CharacteristicSource;
+
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, ICharacteristicSource characteristicSource) : base(objectPath, properties)
         {
+            _CharacteristicSource = characteristicSource;
         }
 
         public Task<byte[]> ReadValueAsync(IDictionary<string, object> options)
         {
-            Console.WriteLine("Reading value");
-            return Task.FromResult(Encoding.ASCII.GetBytes("Hello BLE"));
+            return _CharacteristicSource.ReadValueAsync();
         }
 
         public Task WriteValueAsync(byte[] value, IDictionary<string, object> options)
         {
-            Console.WriteLine("Writing value");
-            return Task.Run(() => Console.WriteLine(Encoding.ASCII.GetChars(value)));
+            return _CharacteristicSource.WriteValueAsync(value);
         }
 
         public Task StartNotifyAsync()
