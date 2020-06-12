@@ -19,13 +19,21 @@ namespace BleServer.Gatt
 
         public async Task RegisterGattApplication(IEnumerable<GattServiceDescription> gattServiceDescriptions)
         {
-            await BuildApplicationTree(gattServiceDescriptions);
-            await RegisterApplicationInBluez();
+            var applicationObjectPath = GenerateApplicationObjectPath();
+            await BuildApplicationTree(applicationObjectPath, gattServiceDescriptions);
+            await RegisterApplicationInBluez(applicationObjectPath);
         }
 
-        private async Task BuildApplicationTree(IEnumerable<GattServiceDescription> gattServiceDescriptions)
+        private static string GenerateApplicationObjectPath()
         {
-            var application = await BuildGattApplication();
+            var appId = Guid.NewGuid().ToString().Substring(0, 8);
+            var applicationObjectPath = $"/{appId}";
+            return applicationObjectPath;
+        }
+
+        private async Task BuildApplicationTree(string applicationObjectPath, IEnumerable<GattServiceDescription> gattServiceDescriptions)
+        {
+            var application = await BuildGattApplication(applicationObjectPath);
 
             foreach (var serviceDescription in gattServiceDescriptions)
             {
@@ -43,16 +51,15 @@ namespace BleServer.Gatt
             }
         }
 
-        private async Task RegisterApplicationInBluez()
+        private async Task RegisterApplicationInBluez(string applicationObjectPath)
         {
             var gattManager = _ServerContext.Connection.CreateProxy<IGattManager1>("org.bluez", "/org/bluez/hci0");
-            await gattManager.RegisterApplicationAsync(new ObjectPath("/"), new Dictionary<string, object>());
+            await gattManager.RegisterApplicationAsync(new ObjectPath(applicationObjectPath), new Dictionary<string, object>());
         }
 
-        private async Task<GattApplication> BuildGattApplication()
+        private async Task<GattApplication> BuildGattApplication(string applicationObjectPath)
         {
-            var appId = Guid.NewGuid().ToString().Substring(0, 8);
-            var application = new GattApplication($"/{appId}");
+            var application = new GattApplication(applicationObjectPath);
             await _ServerContext.Connection.RegisterObjectAsync(application);
             return application;
         }

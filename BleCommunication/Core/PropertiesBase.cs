@@ -8,25 +8,14 @@ namespace BleServer.Core
     public abstract class PropertiesBase<TV>
     {
         protected readonly TV Properties;
-        private ObjectPath _ObjectPath;
-
-        protected PropertiesBase(TV properties)
-        {
-            Properties = properties;
-        }
 
         protected PropertiesBase(ObjectPath objectPath, TV properties)
         {
-            _ObjectPath = objectPath;
+            ObjectPath = objectPath;
             Properties = properties;
         }
 
-        public ObjectPath ObjectPath => _ObjectPath;
-
-        public void SetObjectPath(ObjectPath objectPath)
-        {
-            _ObjectPath = objectPath;
-        }
+        public ObjectPath ObjectPath { get; }
 
         public Task<object> GetAsync(string prop)
         {

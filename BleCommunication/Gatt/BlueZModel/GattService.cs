@@ -10,7 +10,7 @@ namespace BleServer.Gatt.BlueZModel
 
         public IEnumerable<GattCharacteristic> Characteristics => _Characteristics;
 
-        public GattService(GattService1Properties properties) : base(properties)
+        public GattService(string objectPath, GattService1Properties properties) : base(objectPath, properties)
         {
         }
 

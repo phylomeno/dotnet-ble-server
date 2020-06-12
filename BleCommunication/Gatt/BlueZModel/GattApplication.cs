@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BleServer.Core;
 using Tmds.DBus;
@@ -17,18 +18,10 @@ namespace BleServer.Gatt.BlueZModel
 
         public ObjectPath ObjectPath { get; }
 
-        public GattService AddService(GattService1Properties gattService)
-        {
-            var service = new GattService(gattService);
-            var servicePath = ObjectPath + "/service" + _Services.Count;
-            service.SetObjectPath(servicePath);
-            _Services.Add(service);
-            return service;
-        }
-
         public Task<IDictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>>> GetManagedObjectsAsync()
         {
-            IDictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>> result = new Dictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>>();
+            IDictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>> result =
+                new Dictionary<ObjectPath, IDictionary<string, IDictionary<string, object>>>();
             foreach (var service in _Services)
             {
                 result[service.ObjectPath] = service.GetProperties();
@@ -43,6 +36,14 @@ namespace BleServer.Gatt.BlueZModel
             }
 
             return Task.FromResult(result);
+        }
+
+        public GattService AddService(GattService1Properties gattService)
+        {
+            var servicePath = ObjectPath + "/service" + _Services.Count;
+            var service = new GattService(servicePath, gattService);
+            _Services.Add(service);
+            return service;
         }
     }
 }

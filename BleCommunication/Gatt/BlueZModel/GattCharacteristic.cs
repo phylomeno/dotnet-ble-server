@@ -13,9 +13,8 @@ namespace BleServer.Gatt.BlueZModel
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
 
-        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(properties)
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties) : base(objectPath, properties)
         {
-            this.SetObjectPath(objectPath);
         }
 
         public Task<byte[]> ReadValueAsync(IDictionary<string, object> options)
