@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BleServer.Gatt.Description
+namespace DotnetBleServer.Gatt.Description
 {
     public class GattApplicationBuilder
     {

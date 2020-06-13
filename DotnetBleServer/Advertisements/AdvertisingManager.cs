@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BleServer.Core;
+using DotnetBleServer.Core;
 using Tmds.DBus;
 
-namespace BleServer.Advertisements
+namespace DotnetBleServer.Advertisements
 {
     public class AdvertisingManager
     {

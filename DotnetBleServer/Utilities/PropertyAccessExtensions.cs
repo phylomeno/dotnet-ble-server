@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BleServer.Utilities
+namespace DotnetBleServer.Utilities
 {
     public static class PropertyAccessExtensions
     {

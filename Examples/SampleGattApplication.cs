@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using BleServer.Core;
-using BleServer.Gatt;
-using BleServer.Gatt.Description;
+using DotnetBleServer.Core;
+using DotnetBleServer.Gatt;
+using DotnetBleServer.Gatt.Description;
 
 namespace Examples
 {

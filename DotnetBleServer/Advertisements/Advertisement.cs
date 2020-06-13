@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BleServer.Core;
+using DotnetBleServer.Core;
 
-namespace BleServer.Advertisements
+namespace DotnetBleServer.Advertisements
 {
     public class Advertisement : PropertiesBase<AdvertisementProperties>, ILEAdvertisement1
     {

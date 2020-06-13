@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Tmds.DBus;
 
 [assembly: InternalsVisibleTo(Tmds.DBus.Connection.DynamicAssemblyName)]
-namespace BleServer.Gatt.BlueZModel
+namespace DotnetBleServer.Gatt.BlueZModel
 {
     [DBusInterface("org.bluez.GattService1")]
     internal interface IGattService1 : IDBusObject

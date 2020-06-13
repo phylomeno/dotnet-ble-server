@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BleServer.Utilities;
+using DotnetBleServer.Utilities;
 using Tmds.DBus;
 
-namespace BleServer.Core
+namespace DotnetBleServer.Core
 {
     public abstract class PropertiesBase<TV>
     {

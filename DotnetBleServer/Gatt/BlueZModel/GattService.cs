@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BleServer.Core;
+using DotnetBleServer.Core;
 
-namespace BleServer.Gatt.BlueZModel
+namespace DotnetBleServer.Gatt.BlueZModel
 {
     internal class GattService : PropertiesBase<GattService1Properties>, IGattService1, IObjectManagerProperties
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BleServer.Core
+namespace DotnetBleServer.Core
 {
     internal interface IObjectManagerProperties
     {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Tmds.DBus;
 
-namespace BleServer.Core
+namespace DotnetBleServer.Core
 {
     public class ServerContext : IDisposable
     {

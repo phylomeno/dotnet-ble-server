@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BleServer.Gatt.Description
+namespace DotnetBleServer.Gatt.Description
 {
     public class GattCharacteristicDescription
     {

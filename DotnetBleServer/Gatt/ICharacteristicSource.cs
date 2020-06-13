@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BleServer.Gatt
+namespace DotnetBleServer.Gatt
 {
     public interface ICharacteristicSource
     {

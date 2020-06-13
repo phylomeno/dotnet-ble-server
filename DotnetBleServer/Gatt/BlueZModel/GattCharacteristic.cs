@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BleServer.Core;
+using DotnetBleServer.Core;
 using Tmds.DBus;
 
-namespace BleServer.Gatt.BlueZModel
+namespace DotnetBleServer.Gatt.BlueZModel
 {
     internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
         IObjectManagerProperties

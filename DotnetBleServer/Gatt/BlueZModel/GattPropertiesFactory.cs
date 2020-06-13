@@ -1,7 +1,7 @@
-﻿using BleServer.Gatt.Description;
+﻿using DotnetBleServer.Gatt.Description;
 using Tmds.DBus;
 
-namespace BleServer.Gatt.BlueZModel
+namespace DotnetBleServer.Gatt.BlueZModel
 {
     internal class GattPropertiesFactory
     {

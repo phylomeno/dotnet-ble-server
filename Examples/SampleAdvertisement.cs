@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using BleServer.Advertisements;
-using BleServer.Core;
+using DotnetBleServer.Advertisements;
+using DotnetBleServer.Core;
 
 namespace Examples
 {

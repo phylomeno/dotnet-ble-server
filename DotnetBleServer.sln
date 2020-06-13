@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Examples.csproj", "{AE3AAA32-DFE6-4CAD-BE3D-0CFBA5C75EC4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetGattServer", "DotnetGattServer\DotnetGattServer.csproj", "{780C468F-CCDD-4877-A6CC-C7579B80215D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBleServer", "DotnetBleServer\DotnetBleServer.csproj", "{0D775919-ECF4-4C71-92ED-D7D70D9BF59F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{AE3AAA32-DFE6-4CAD-BE3D-0CFBA5C75EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE3AAA32-DFE6-4CAD-BE3D-0CFBA5C75EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE3AAA32-DFE6-4CAD-BE3D-0CFBA5C75EC4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{780C468F-CCDD-4877-A6CC-C7579B80215D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{780C468F-CCDD-4877-A6CC-C7579B80215D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{780C468F-CCDD-4877-A6CC-C7579B80215D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{780C468F-CCDD-4877-A6CC-C7579B80215D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D775919-ECF4-4C71-92ED-D7D70D9BF59F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D775919-ECF4-4C71-92ED-D7D70D9BF59F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D775919-ECF4-4C71-92ED-D7D70D9BF59F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D775919-ECF4-4C71-92ED-D7D70D9BF59F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

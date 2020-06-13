@@ -1,4 +1,4 @@
-﻿namespace BleServer.Gatt.Description
+﻿namespace DotnetBleServer.Gatt.Description
 {
     public class GattDescriptorDescription
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BleServer.Core;
+using DotnetBleServer.Core;
 
 namespace Examples
 {

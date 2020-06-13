@@ -1,5 +1,5 @@
-# .NET GATT Server [![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-.NET GATT Server is a library to support creation of BLE peripherals on Linux using .NET Core.
+# .NET BLE Server [![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+.NET BLE Server is a library to support creation of BLE peripherals on Linux using .NET Core.
 
 Under the hood the library uses BlueZ. The provided API aims to preserve the object structure of BlueZ whilst minimizing the aspects of the D-Bus communication.
 
