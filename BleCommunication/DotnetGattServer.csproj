@@ -7,10 +7,19 @@
     <ApplicationIcon />
     <StartupObject />
 
-<PackageId>DotnetGattServer</PackageId>
-<Version>0.1.0-snapshot</Version>
-<Authors>your_name</Authors>
-<Company>your_company</Company>  </PropertyGroup>
+    <PackageId>DotnetGattServer</PackageId>
+    <Version>0.1.0-snapshot</Version>
+    <Authors>phylomeno</Authors>
+    <Description>
+      .NET GATT Server is a library to support creation of BLE peripherals on Linux using .NET Core.
+
+      Under the hood the library uses BlueZ. The provided API aims to preserve the object structure of BlueZ whilst minimizing the aspects of the D-Bus communication.
+    </Description>
+    <Copyright>Roman Scheidegger</Copyright>
+    <PackageProjectUrl>https://github.com/phylomeno/dotnet-gatt-server</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/phylomeno/dotnet-gatt-server</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Tmds.DBus" Version="0.8.0" />
