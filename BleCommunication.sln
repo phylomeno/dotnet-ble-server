@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BleServer", "BleCommunication\BleServer.csproj", "{7122809F-0CC3-42DF-96D8-6870E27D50A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetGattServer", "BleCommunication\DotnetGattServer.csproj", "{7122809F-0CC3-42DF-96D8-6870E27D50A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{AE3AAA32-DFE6-4CAD-BE3D-0CFBA5C75EC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Examples.csproj", "{AE3AAA32-DFE6-4CAD-BE3D-0CFBA5C75EC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

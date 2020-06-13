@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BleCommunication\BleServer.csproj" />
+    <ProjectReference Include="..\BleCommunication\DotnetGattServer.csproj" />
   </ItemGroup>
 
 </Project>
