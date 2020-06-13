@@ -1,11 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ApplicationIcon />
-    <StartupObject />
 
     <PackageId>DotnetGattServer</PackageId>
     <Version>0.1.0-snapshot</Version>
