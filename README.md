@@ -1,4 +1,4 @@
-# .NET BLE Server [![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+# .NET BLE Server [![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![NuGet](https://img.shields.io/nuget/vpre/DotnetBleServer)](https://www.nuget.org/packages/DotnetBleServer/)
 .NET BLE Server is a library to support creation of BLE peripherals on Linux using .NET Core.
 
 Under the hood the library uses BlueZ. The provided API aims to preserve the object structure of BlueZ whilst minimizing the aspects of the D-Bus communication.
