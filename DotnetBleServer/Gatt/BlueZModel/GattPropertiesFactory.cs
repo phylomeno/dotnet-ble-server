@@ -13,7 +13,7 @@ namespace DotnetBleServer.Gatt.BlueZModel
 
         public static GattCharacteristic1Properties CreateGattCharacteristic(GattCharacteristicDescription characteristic)
         {
-            var characteristicProperties = new GattCharacteristic1Properties {UUID = characteristic.UUID, Flags = CharacteristicFlagConverter.ConvertFlags(characteristic.Flags2)};
+            var characteristicProperties = new GattCharacteristic1Properties {UUID = characteristic.UUID, Flags = CharacteristicFlagConverter.ConvertFlags(characteristic.Flags)};
 
             return characteristicProperties;
         }
