@@ -1,4 +1,5 @@
 ﻿using DotnetBleServer.Gatt.Description;
+
 using Tmds.DBus;
 
 namespace DotnetBleServer.Gatt.BlueZModel
@@ -11,7 +12,7 @@ namespace DotnetBleServer.Gatt.BlueZModel
             {
                 UUID = serviceDescription.UUID,
                 Primary = serviceDescription.Primary,
-                Characteristics = new ObjectPath[0] 
+                Characteristics = new ObjectPath[0]
             };
         }
 
