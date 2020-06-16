@@ -12,6 +12,7 @@ namespace DotnetBleServer.Gatt.Description
 
         public string UUID { get; set; }
         public string[] Flags { get; set; }
+        public CharacteristicFlags Flags2 { get; set; }
 
         public void AddDescriptor(GattDescriptorDescription gattDescriptorDescription)
         {
