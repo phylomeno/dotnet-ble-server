@@ -21,7 +21,7 @@ namespace Examples
             {
                 CharacteristicSource = new ExampleCharacteristicSource(),
                 UUID = "12345678-1234-5678-1234-56789abcdef1",
-                Flags = new[] {"read", "write", "writable-auxiliaries"}
+                Flags = CharacteristicFlags.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries
             };
             var gattDescriptorDescription = new GattDescriptorDescription
             {
