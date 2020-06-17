@@ -8,7 +8,12 @@ namespace DotnetBleServer.Gatt.BlueZModel
     {
         public static GattService1Properties CreateGattService(GattServiceDescription serviceDescription)
         {
-            return new GattService1Properties {UUID = serviceDescription.UUID, Primary = serviceDescription.Primary, Characteristics = new ObjectPath[0]};
+            return new GattService1Properties
+            {
+                UUID = serviceDescription.UUID,
+                Primary = serviceDescription.Primary,
+                Characteristics = new ObjectPath[0]
+            };
         }
 
         public static GattCharacteristic1Properties CreateGattCharacteristic(GattCharacteristicDescription characteristic)
