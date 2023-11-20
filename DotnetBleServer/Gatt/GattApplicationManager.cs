@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DotnetBleServer.Core;
+﻿using DotnetBleServer.Core;
 using DotnetBleServer.Gatt.BlueZModel;
 using DotnetBleServer.Gatt.Description;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Tmds.DBus;
 
 namespace DotnetBleServer.Gatt
@@ -11,10 +11,12 @@ namespace DotnetBleServer.Gatt
     public class GattApplicationManager
     {
         private readonly ServerContext _ServerContext;
+        private readonly string _AdapterPath;
 
-        public GattApplicationManager(ServerContext serverContext)
+        public GattApplicationManager(ServerContext serverContext, string adapterPath)
         {
             _ServerContext = serverContext;
+            _AdapterPath = adapterPath;
         }
 
         public async Task RegisterGattApplication(IEnumerable<GattServiceDescription> gattServiceDescriptions)
@@ -53,7 +55,7 @@ namespace DotnetBleServer.Gatt
 
         private async Task RegisterApplicationInBluez(string applicationObjectPath)
         {
-            var gattManager = _ServerContext.Connection.CreateProxy<IGattManager1>("org.bluez", "/org/bluez/hci0");
+            var gattManager = _ServerContext.Connection.CreateProxy<IGattManager1>("org.bluez", new ObjectPath(_AdapterPath));
             await gattManager.RegisterApplicationAsync(new ObjectPath(applicationObjectPath), new Dictionary<string, object>());
         }
 

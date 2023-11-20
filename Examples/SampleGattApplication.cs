@@ -9,7 +9,7 @@ namespace Examples
 {
     internal class SampleGattApplication
     {
-        public static async Task RegisterGattApplication(ServerContext serverContext)
+        public static async Task RegisterGattApplication(ServerContext serverContext, string adapterPath)
         {
             var gattServiceDescription = new GattServiceDescription
             {
@@ -34,7 +34,7 @@ namespace Examples
                 .AddService(gattServiceDescription)
                 .WithCharacteristic(gattCharacteristicDescription, new[] {gattDescriptorDescription});
 
-            await new GattApplicationManager(serverContext).RegisterGattApplication(gab.BuildServiceDescriptions());
+            await new GattApplicationManager(serverContext, adapterPath).RegisterGattApplication(gab.BuildServiceDescriptions());
         }
 
         internal class ExampleCharacteristicSource : ICharacteristicSource

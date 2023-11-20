@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Examples": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "remoteDebugMachine": "192.168.1.25"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}

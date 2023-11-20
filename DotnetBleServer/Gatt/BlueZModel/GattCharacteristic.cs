@@ -7,8 +7,7 @@ using Tmds.DBus;
 
 namespace DotnetBleServer.Gatt.BlueZModel
 {
-    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
-        IObjectManagerProperties
+    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1, IObjectManagerProperties
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
 
