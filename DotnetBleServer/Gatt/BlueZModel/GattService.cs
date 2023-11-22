@@ -32,10 +32,12 @@ namespace DotnetBleServer.Gatt.BlueZModel
         public GattCharacteristic AddCharacteristic(GattCharacteristic1Properties characteristic, ICharacteristicSource characteristicSource)
         {
             characteristic.Service = ObjectPath;
-            var gattCharacteristic = new GattCharacteristic(NextCharacteristicPath(), characteristic, characteristicSource);
+            var characteristicPath = NextCharacteristicPath();
+
+            var gattCharacteristic = new GattCharacteristic(characteristicPath, characteristic, characteristicSource);
             _Characteristics.Add(gattCharacteristic);
 
-            Properties.Characteristics = Properties.Characteristics.Append(NextCharacteristicPath()).ToArray();
+            Properties.Characteristics = Properties.Characteristics.Append(characteristicPath).ToArray();
             
             return gattCharacteristic;
         }
