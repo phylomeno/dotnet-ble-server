@@ -11,7 +11,7 @@ namespace Examples
         public static async Task RegisterSampleAdvertisement(ServerContext serverContext, string adapterPath)
         {
             var advertisementProperties = new LEAdvertisement1Properties
-            {
+            { 
                 Type = "peripheral",
                 ServiceUUIDs = new[] { "E11EFB5D-E8BD-46B5-814A-1C4322F80067" },
                 LocalName = "DISPLAYED NAME",
@@ -19,7 +19,8 @@ namespace Examples
                 // I don't know why, for some reasons, changing appearance is not always working.
                 Appearance = (ushort)Convert.ToUInt32("0x0080", 16),
                 // Set to false if Type = "broadcast"
-                Discoverable = true,
+                Discoverable = true, 
+                IncludeTxPower = true,
             };
 
             await new AdvertisingManager(serverContext, adapterPath).CreateAdvertisement(advertisementProperties);
