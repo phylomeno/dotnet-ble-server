@@ -78,7 +78,7 @@ namespace DotnetBleServer.Gatt
         private async Task<GattCharacteristic> AddNewCharacteristic(GattService gattService, GattCharacteristicDescription characteristic)
         {
             var gattCharacteristic1Properties = GattPropertiesFactory.CreateGattCharacteristic(characteristic);
-            var gattCharacteristic = gattService.AddCharacteristic(gattCharacteristic1Properties, characteristic.CharacteristicSource);
+            var gattCharacteristic = gattService.AddCharacteristic(gattCharacteristic1Properties, characteristic);
             await _ServerContext.Connection.RegisterObjectAsync(gattCharacteristic);
             return gattCharacteristic;
         }

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using DotnetBleServer.Core;
+﻿using DotnetBleServer.Core;
 using DotnetBleServer.Gatt;
 using DotnetBleServer.Gatt.Description;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Examples
 {
     internal static class SampleGattApplication
     {
-        public static async Task RegisterGattApplication(ServerContext serverContext, string adapterPath, ICharacteristicSource source)
+        public static async Task RegisterGattApplication(ServerContext serverContext, string adapterPath)
         {
             var gattServiceDescription = new GattServiceDescription
             {
@@ -20,26 +17,45 @@ namespace Examples
                 Primary = true
             };
 
-            var gattCharacteristicDescription = new GattCharacteristicDescription
+            var gattCharacteristicDescription = new MyCustomGattCharacteristicDescription
             {
-                CharacteristicSource = source,
                 UUID = "3929F0D8-D461-43B0-BCF3-DF228CDD4A35",
                 Flags = CharacteristicFlags.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries | CharacteristicFlags.Notify
             };
 
             var gattDescriptorDescription = new GattDescriptorDescription
             {
-                Value = new[] {(byte) 't'},
+                Value = new[] { (byte)'t' },
                 UUID = "3929F0D8-D461-43B0-BCF3-DF228CDD4A35",
-                Flags = new[] {"read", "write"}
+                Flags = new[] { "read", "write" }
             };
 
-            var gab = new GattApplicationBuilder(); 
+            var gab = new GattApplicationBuilder();
             gab
                 .AddService(gattServiceDescription)
-                .WithCharacteristic(gattCharacteristicDescription, new[] {gattDescriptorDescription});
-            
+                .WithCharacteristic(gattCharacteristicDescription, new[] { gattDescriptorDescription });
+
             await new GattApplicationManager(serverContext, adapterPath).RegisterGattApplication(gab.BuildServiceDescriptions());
+        }
+    }
+
+    class MyCustomGattCharacteristicDescription : GattCharacteristicDescription
+    {
+        public override Task WriteValueAsync(byte[] value)
+        {
+            Console.WriteLine("Writing value");
+
+            string message = new string(Encoding.ASCII.GetChars(value));
+
+            Console.WriteLine($"Value received: {message}");
+
+            return base.WriteValueAsync(value);
+        }
+
+        public override Task<byte[]> ReadValueAsync()
+        {
+            Console.WriteLine("Reading value");
+            return Task.FromResult(Encoding.ASCII.GetBytes("Some data"));
         }
     }
 }
