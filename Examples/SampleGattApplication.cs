@@ -13,20 +13,20 @@ namespace Examples
         {
             var gattServiceDescription = new GattServiceDescription
             {
-                UUID = "E11EFB5D-E8BD-46B5-814A-1C4322F80067",
+                UUID = "12345678-1234-5678-1234-56789abcdef0",
                 Primary = true
             };
 
             var gattCharacteristicDescription = new MyCustomGattCharacteristicDescription
             {
-                UUID = "3929F0D8-D461-43B0-BCF3-DF228CDD4A35",
+                UUID = "12345678-1234-5678-1234-56789abcdef1",
                 Flags = CharacteristicFlags.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries | CharacteristicFlags.Notify
             };
 
             var gattDescriptorDescription = new GattDescriptorDescription
             {
                 Value = new[] { (byte)'t' },
-                UUID = "3929F0D8-D461-43B0-BCF3-DF228CDD4A35",
+                UUID = "12345678-1234-5678-1234-56789abcdef2",
                 Flags = new[] { "read", "write" }
             };
 
