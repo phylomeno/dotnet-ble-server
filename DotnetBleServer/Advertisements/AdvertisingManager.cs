@@ -10,12 +10,10 @@ namespace DotnetBleServer.Advertisements
     public class AdvertisingManager
     {
         private readonly ServerContext _context;
-        private readonly IAdapter1 _adapter;
 
-        public AdvertisingManager(ServerContext context, IAdapter1 adapter)
+        public AdvertisingManager(ServerContext context)
         {
             _context = context;
-            _adapter = adapter;
         }
 
         public async Task RegisterAdvertisement(Advertisement advertisement)
@@ -29,13 +27,13 @@ namespace DotnetBleServer.Advertisements
 
         private ILEAdvertisingManager1 GetAdvertisingManager()
         {
-            return _context.Connection.CreateProxy<ILEAdvertisingManager1>(Constants.DbusServicePath, _adapter.ObjectPath);
+            return _context.Connection.CreateProxy<ILEAdvertisingManager1>(Constants.DbusServicePath, _context.Adapter.ObjectPath);
         }
 
         public async Task CreateAdvertisement(LEAdvertisement1Properties advertisementProperties)
         {
-            var advertisement = new Advertisement($"{_adapter.ObjectPath}/advertisement0", advertisementProperties);
-            await new AdvertisingManager(_context, _adapter).RegisterAdvertisement(advertisement);
+            var advertisement = new Advertisement($"{_context.Adapter.ObjectPath}/advertisement0", advertisementProperties);
+            await new AdvertisingManager(_context).RegisterAdvertisement(advertisement);
         }
     }
 }

@@ -16,6 +16,9 @@ using (var serverContext = new ServerContext())
         Type = "peripheral",
         ServiceUUIDs = new[] { "12345678-1234-5678-1234-56789abcdef0"},
         LocalName = "A",
+        Appearance = (ushort)Convert.ToUInt32("0x0080", 16),
+        Discoverable = true,
+        IncludeTxPower = true,
     };
 
     await new AdvertisingManager(serverContext).CreateAdvertisement(advertisementProperties);
@@ -34,9 +37,8 @@ using (var serverContext = new ServerContext())
 
     var gattCharacteristicDescription = new GattCharacteristicDescription
     {
-        CharacteristicSource = new SampleGattApplication.ExampleCharacteristicSource(),
         UUID = "12345678-1234-5678-1234-56789abcdef1",
-        Flags = new[] {"read", "write", "writable-auxiliaries"}
+        Flags = CharacteristicFlags.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries | CharacteristicFlags.Notify
     };
     var gattDescriptorDescription = new GattDescriptorDescription
     {
