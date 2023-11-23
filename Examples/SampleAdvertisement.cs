@@ -8,7 +8,7 @@ namespace Examples
 {
     public class SampleAdvertisement
     {
-        public static async Task RegisterSampleAdvertisement(ServerContext serverContext, string adapterPath)
+        public static async Task RegisterSampleAdvertisement(ServerContext context, IAdapter1 adapter)
         {
             var advertisementProperties = new LEAdvertisement1Properties
             {
@@ -23,7 +23,7 @@ namespace Examples
                 IncludeTxPower = true,
             };
 
-            await new AdvertisingManager(serverContext, adapterPath).CreateAdvertisement(advertisementProperties);
+            await new AdvertisingManager(context, adapter).CreateAdvertisement(advertisementProperties);
         }
     }
 }

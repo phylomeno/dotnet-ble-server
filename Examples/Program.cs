@@ -1,6 +1,6 @@
 ﻿using DotnetBleServer.Core;
-using DotnetBleServer.Utilities;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Examples
@@ -15,29 +15,36 @@ namespace Examples
 
             Task.Run(async () =>
             {
-                using (var serverContext = new ServerContext())
+                using (ServerContext context = new ServerContext())
                 {
-                    await serverContext.Connect();
+                    // Mandatory for BLE Advertisement (connection must be manual) (ie. Tmds.DBus.Connection.RegisterObject methods)
+                    await context.Connect();
 
-                    string adapterPath = (await AdapterExtensions.GetBluetoothAdapters(serverContext.Connection))[0];
+                    var manager = new BlueZManager(context);
 
-                    Console.WriteLine($"Current bluetooth adapter: {adapterPath}");
+                    var adapters = await manager.GetAdaptersAsync();
+                    if (adapters.Count == 0)
+                    {
+                        throw new Exception("No Bluetooth adapters found.");
+                    }
 
-                    // Retrieve adapter
-                    IAdapter1 BLEAdapter = serverContext.Connection.CreateProxy<IAdapter1>("org.bluez", adapterPath);
+                    var adapter = adapters.First();
+
+                    Console.WriteLine($"Current bluetooth adapter: {adapter.ObjectPath}");
 
                     // Turn on adapter.
-                    await Adapter1Extensions.SetPoweredAsync(BLEAdapter, true);
+                    await adapter.SetPoweredAsync(true);
 
-                    if (!await Adapter1Extensions.GetPoweredAsync(BLEAdapter))
-                        throw new Exception($"Can't power on adapter {adapterPath}");
+                    if (!await adapter.GetPoweredAsync())
+                        throw new Exception($"Can't power on adapter {adapter.ObjectPath}");
 
-                    await SampleAdvertisement.RegisterSampleAdvertisement(serverContext, adapterPath);
-                    await SampleGattApplication.RegisterGattApplication(serverContext, adapterPath);
+                    await SampleAdvertisement.RegisterSampleAdvertisement(context, adapter);
+                    await SampleGattApplication.RegisterGattApplication(context, adapter);
 
                     Console.WriteLine("Press Ctrl+C to quit");
                     await Task.Delay(-1);
                 }
+
             }).Wait();
         }
     }

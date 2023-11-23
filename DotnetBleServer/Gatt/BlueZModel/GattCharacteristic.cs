@@ -30,6 +30,11 @@ namespace DotnetBleServer.Gatt.BlueZModel
 
         public Task StartNotifyAsync()
         {
+            if (Properties.Notifying)
+            {
+                return Task.CompletedTask;
+            }
+
             return _CharacteristicSource.StartUpdatesAsync();
         }
 

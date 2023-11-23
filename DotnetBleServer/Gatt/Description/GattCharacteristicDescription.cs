@@ -30,7 +30,7 @@ namespace DotnetBleServer.Gatt.Description
             if (_notify)
                 ValueUpdated?.Invoke(this, new CharacteristicUpdatedEventArgs(this));
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         public abstract Task<byte[]> ReadValueAsync();
