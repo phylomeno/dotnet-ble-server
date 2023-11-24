@@ -44,8 +44,7 @@ using (var serverContext = new ServerContext())
 using (var serverContext = new ServerContext())
 {
     var gattServiceDescription = new GattServiceDescription
-    {![demo](https://github.com/CarteKiwi/BluetoothLE.Server.Linux/assets/12309245/f8dd1bb2-f6af-4bbe-bcbe-50257fd29622)
-
+    {
         UUID = "12345678-1234-5678-1234-56789abcdef0",
         Primary = true
     };
@@ -53,18 +52,16 @@ using (var serverContext = new ServerContext())
     var gattCharacteristicDescription = new GattCharacteristicDescription
     {
         UUID = "12345678-1234-5678-1234-56789abcdef1",
-        Flags = CharacteristicFla
-
-https://github.com/CarteKiwi/BluetoothLE.Server.Linux/assets/12309245/bb4ebdf7-d298-494a-b33c-72248d4db187
-
-gs.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries | CharacteristicFlags.Notify
+        Flags = CharacteristicFlags.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries | CharacteristicFlags.Notify
     };
+
     var gattDescriptorDescription = new GattDescriptorDescription
     {
         Value = new[] {(byte) 't'},
         UUID = "12345678-1234-5678-1234-56789abcdef2",
         Flags = new[] {"read", "write"}
     };
+
     var gab = new GattApplicationBuilder();
     gab
         .AddService(gattServiceDescription)
