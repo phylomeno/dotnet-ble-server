@@ -7,6 +7,20 @@ Under the hood the library uses BlueZ. The provided API aims to preserve the obj
 
 ## Examples
 
+<table>
+  <tr>
+    <td colspan="2" align="center">Client / Server demo (Windows - Linux)</td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src='https://github.com/CarteKiwi/BluetoothLE.Server.Linux/assets/12309245/e733aeff-2fb9-4808-89e0-f404739231fb'/></td>
+  </tr>
+    <tr>
+        <td>Client running WinUI app using <a href="https://github.com/dotnet-bluetooth-le/dotnet-bluetooth-le">PLUGIN.BLE</a> nuget package</td>
+        <td>Server running Linux (raspberry PI 3) (connected via SSH on WSL)</td>
+  </tr>
+</table>
+
+
 ### Advertisement
 ```csharp
 using (var serverContext = new ServerContext())
@@ -30,7 +44,8 @@ using (var serverContext = new ServerContext())
 using (var serverContext = new ServerContext())
 {
     var gattServiceDescription = new GattServiceDescription
-    {
+    {![demo](https://github.com/CarteKiwi/BluetoothLE.Server.Linux/assets/12309245/f8dd1bb2-f6af-4bbe-bcbe-50257fd29622)
+
         UUID = "12345678-1234-5678-1234-56789abcdef0",
         Primary = true
     };
@@ -38,7 +53,11 @@ using (var serverContext = new ServerContext())
     var gattCharacteristicDescription = new GattCharacteristicDescription
     {
         UUID = "12345678-1234-5678-1234-56789abcdef1",
-        Flags = CharacteristicFlags.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries | CharacteristicFlags.Notify
+        Flags = CharacteristicFla
+
+https://github.com/CarteKiwi/BluetoothLE.Server.Linux/assets/12309245/bb4ebdf7-d298-494a-b33c-72248d4db187
+
+gs.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries | CharacteristicFlags.Notify
     };
     var gattDescriptorDescription = new GattDescriptorDescription
     {
