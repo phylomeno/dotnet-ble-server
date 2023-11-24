@@ -20,17 +20,10 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>icon_small.png</PackageIcon>
     <PackageTags>bluetooth, bluez, ble, .net, linux, uno, dotnet</PackageTags>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>Bluetooth Low Energy (BLE) server for .NET on Linux (Bluez wrapper)</Title>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\icon_small.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\README.md">
+    <None Include="icon_small.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -38,13 +31,6 @@
 
   <ItemGroup>
     <PackageReference Include="Tmds.DBus" Version="0.15.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="icon_small.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

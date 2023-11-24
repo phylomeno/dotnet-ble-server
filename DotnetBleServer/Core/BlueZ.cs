@@ -36,7 +36,7 @@ namespace DotnetBleServer.Core
     }
 
     [DBusInterface("org.bluez.Adapter1")]
-    interface IAdapter1 : IDBusObject
+    public interface IAdapter1 : IDBusObject
     {
         Task StartDiscoveryAsync();
         Task SetDiscoveryFilterAsync(IDictionary<string, object> Properties);
@@ -50,7 +50,7 @@ namespace DotnetBleServer.Core
     }
 
     [Dictionary]
-    class Adapter1Properties
+    public class Adapter1Properties
     {
         private string _Address = default (string);
         public string Address
@@ -235,7 +235,7 @@ namespace DotnetBleServer.Core
         }
     }
 
-    static class Adapter1Extensions
+    public static class Adapter1Extensions
     {
         public static Task<string> GetAddressAsync(this IAdapter1 o) => o.GetAsync<string>("Address");
         public static Task<string> GetAddressTypeAsync(this IAdapter1 o) => o.GetAsync<string>("AddressType");
@@ -266,7 +266,7 @@ namespace DotnetBleServer.Core
     }
 
     [DBusInterface("org.bluez.LEAdvertisingManager1")]
-    interface ILEAdvertisingManager1 : IDBusObject
+    public interface ILEAdvertisingManager1 : IDBusObject
     {
         Task RegisterAdvertisementAsync(ObjectPath Advertisement, IDictionary<string, object> Options);
         Task UnregisterAdvertisementAsync(ObjectPath Service);
@@ -277,7 +277,7 @@ namespace DotnetBleServer.Core
     }
 
     [Dictionary]
-    class LEAdvertisingManager1Properties
+    public class LEAdvertisingManager1Properties
     {
         private byte _ActiveInstances = default (byte);
         public byte ActiveInstances

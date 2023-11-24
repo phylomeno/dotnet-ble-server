@@ -7,14 +7,13 @@ using Tmds.DBus;
 
 namespace DotnetBleServer.Gatt.BlueZModel
 {
-    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
-        IObjectManagerProperties
+    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1, IObjectManagerProperties
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
 
-        private readonly ICharacteristicSource _CharacteristicSource;
+        private readonly ICharacteristic _CharacteristicSource;
 
-        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, ICharacteristicSource characteristicSource) : base(objectPath, properties)
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, ICharacteristic characteristicSource) : base(objectPath, properties)
         {
             _CharacteristicSource = characteristicSource;
         }
@@ -31,12 +30,17 @@ namespace DotnetBleServer.Gatt.BlueZModel
 
         public Task StartNotifyAsync()
         {
-            throw new NotImplementedException();
+            if (Properties.Notifying)
+            {
+                return Task.CompletedTask;
+            }
+
+            return _CharacteristicSource.StartUpdatesAsync();
         }
 
         public Task StopNotifyAsync()
         {
-            throw new NotImplementedException();
+            return _CharacteristicSource.StopUpdatesAsync();
         }
 
         public IDictionary<string, IDictionary<string, object>> GetProperties()
@@ -49,6 +53,7 @@ namespace DotnetBleServer.Gatt.BlueZModel
                         {"Service", Properties.Service},
                         {"UUID", Properties.UUID},
                         {"Flags", Properties.Flags},
+                        {"Notifying", Properties.Notifying },
                         {"Descriptors", Descriptors.Select(d => d.ObjectPath).ToArray()}
                     }
                 }
